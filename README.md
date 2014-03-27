@@ -6,7 +6,7 @@ GA_WDI_Project1_Title_TBD
 #####Pivotal Tracker [Link](https://www.pivotaltracker.com/s/projects/1046968)
 
 #####ERD
-![ERD](http://imgur.com/nmwwL5D)
+![ERD](http://i.imgur.com/nmwwL5D.jpg)
 
 
 
