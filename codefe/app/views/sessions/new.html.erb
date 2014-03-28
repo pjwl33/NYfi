@@ -1,0 +1,16 @@
+<h3>
+  <%= flash[:notice] %>
+  <%= link_to "Create New Account", new_user_path %>
+</h3>
+
+<h3>Login Form</h3>
+
+<%= form_tag session_path do %>
+  <%= label_tag :email %>
+  <%= text_field_tag :email %>
+
+  <%= label_tag :password %>
+  <%= password_field_tag :password %>
+
+  <%= submit_tag :login %>
+<% end %>

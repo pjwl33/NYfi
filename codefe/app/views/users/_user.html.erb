@@ -1,0 +1,14 @@
+<div>
+  <% if @show_link %>
+    <h4>User Name: <%= link_to user.name, user %></h4>
+  <% else %>
+    <h4>User Name: <%= user.name %></h4>
+  <% end %>
+
+  <p><strong>Email: </strong><%= user.email %> <br>
+    <strong>Admin: </strong> <%= user.admin %> <br>
+  </p>
+
+  <p><%= link_to "EDIT this Account", edit_user_path(user) %></p>
+
+</div>

@@ -1,0 +1,31 @@
+<%= form_for @user do |f| %>
+
+  <% if  @user.errors.any? %>
+    Please correct the following errors:
+    <ul>
+      <% @user.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %> <br>
+
+  <%= f.label :email %>
+  <%= f.text_field :email %> <br>
+
+  <%= f.label :password %>
+  <%= f.password_field :password %> <br>
+
+  <%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %> <br>
+
+  <% if current_user.admin? %>
+    <%= f.label :admin %>
+    <%= f.check_box :admin %> <br>
+  <% end %>
+
+  <%= f.submit %>
+
+<% end %>

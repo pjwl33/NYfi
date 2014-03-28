@@ -1,0 +1,9 @@
+<h4><%= flash[:notice] %></h4>
+<%= render @user %> <br>
+
+<%= link_to "DELETE this User", @user, method: 'delete' %>
+
+<p><strong>Favorites</strong></p>
+<% @user.hotspots.each do |hs| %>
+  <p><%= link_to hs.name, hotspot_path(hs) %></p>
+<% end %>

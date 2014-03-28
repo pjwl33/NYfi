@@ -7,8 +7,17 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+<% if current_user %>
+  <h1><%= link_to current_user.name, user_path(current_user) %> -- Welcome to Codefe'</h1>
+  <h2><%= link_to "Logout", logout_path %></h2>
+<% else %>
+  <h2><%= link_to "Create New Account", new_user_path %></h2>
+  <h2><%= link_to "Login", login_path %></h2>
+<% end %>
 
-<%= yield %>
+
+
+<div class="mainbox"><%= yield %></div>
 
 </body>
 </html>
