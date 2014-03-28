@@ -7,6 +7,7 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <h1><%= link_to "Home", root_path %></h1>
 <% if current_user %>
   <h1><%= link_to current_user.name, user_path(current_user) %> -- Welcome to Codefe'</h1>
   <h2><%= link_to "Logout", logout_path %></h2>
