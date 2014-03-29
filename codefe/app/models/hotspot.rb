@@ -12,6 +12,4 @@ class Hotspot < ActiveRecord::Base
   #   response = JSON.parse(HTTParty.get(@@foursquare_url))
   #   return response
   # end
-
-
 end
