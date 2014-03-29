@@ -1,11 +1,16 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
- # User.create name: "Paul Lee", email: "pauly0418@gmail.com", password: "hello", password_confirmation: "hello", admin: true
 
- # User.create name: "John Lee", email: "johnlee@gmail.com", password: "hello", password_confirmation: "hello", admin: false
 
+def seeder
+
+  return wifi_data
+end
+
+seeder.each do |hotspot|
+  Hotspot.create({
+    name: hotspot[1],
+    address: "#{hotspot[2]}, #{hotspot[3]}, #{hotspot[7]}",
+    biz_url: hotspot[4],
+    wifi_type: hotspot[6],
+    phone: hotspot[5]
+   })
+end

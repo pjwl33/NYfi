@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140327193004) do
+ActiveRecord::Schema.define(version: 20140329184256) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -26,18 +26,11 @@ ActiveRecord::Schema.define(version: 20140327193004) do
   create_table "hotspots", force: true do |t|
     t.string  "name"
     t.string  "address"
-    t.string  "cross_street"
-    t.string  "hood"
     t.string  "biz_url"
+    t.string  "wifi_type"
+    t.string  "phone"
     t.string  "img_url"
-    t.string  "type"
-    t.boolean "power"
-    t.boolean "status"
-    t.integer "dl_speed"
-    t.integer "ul_speed"
-    t.decimal "yelp_rating",   precision: 8, scale: 2
-    t.string  "noise_level"
-    t.boolean "good_for_kids"
+    t.decimal "yelp_rating", precision: 8, scale: 2
   end
 
   create_table "hotspots_users", id: false, force: true do |t|

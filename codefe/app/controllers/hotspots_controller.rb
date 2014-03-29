@@ -2,6 +2,7 @@ class HotspotsController < ApplicationController
 
   def index
     @hotspots = Hotspot.all
+    @show_link = true
   end
 
   def show
