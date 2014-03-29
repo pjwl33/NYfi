@@ -1,0 +1,29 @@
+<%= form_for @hotspot do |f| %>
+
+  <% if  @hotspot.errors.any? %>
+    Please correct the following errors:
+    <ul>
+      <% @hotspot.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <% end %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name %> <br>
+
+  <%= f.label :address %>
+  <%= f.text_field :address %> <br>
+
+  <%= f.label :biz_url %>
+  <%= f.text_field :biz_url %> <br>
+
+  <%= f.label :img_url %>
+  <%= f.text_field :img_url %> <br>
+
+  <%= f.label :admin %>
+  <%= f.check_box :admin %> <br>
+
+  <%= f.submit %>
+
+<% end %>

@@ -1,0 +1,47 @@
+Make Something Dominant
+
+larrybuch@gmail.com
+github.com/larrybuch
+
+Red is around the big stuff - your eyes will go there for visual attention (footnetwork.com as an example - there's a lot of red stuff). The less competition there is, the better
+
+Airbnb example - one huge image, and straight forward search box and straight forward, less distractions. Dominance is simplicity
+
+* Make something dominant
+* notches in the font are serifs, alternative is sans-serif - pick one of each of those and compare them together. Pick for contrast, dont have 2 serif texts - you want contrasts
+assigned to different jobs (header vs body)
+* use 2 fonts
+  - 1 serif
+  - 1 sans-serif
+  - consistency and don't change the roles
+
+* consistency builds street cred
+* don't use too many colors: to start, use black (dark gray) & white and one other colors (blue, red, etc.)
+* body font should be about 16 pixels, serif is serious, sans-serif is a bit more modern/fun
+* fonts have personalities and style and cater that to the style/feeling of your site
+* larrybuch.com/resources
+* google web fonts - just because you CAN use a web font, doesn't mean you should (most are clunky on google)
+* beautiful web type (hellohappy.org/beautiful-web-type) - best of Google fonts
+* typography.com/cloud/welcome
+* Times New Roman (TNR) is default in serif
+* idropper in chrome extension - kuler.adobe.com (see types of colors and their hex values)
+* color should have a purpose and a job
+
+* top 3 fonts from Larry: Georgia (standard serif and always render on ppl's comp), Helvetica (sans-serif),
+
+* move stuff around for a while - make sure each element is solid and has a purpose
+
+* cinderblock
+* skeleton - (DOWNLOAD from GitHub, copy skeleton.css into your project css folder) framework to start a website that looks pretty, like Twitter Bootstrap and Zurb's Foundation - rough prototype, but it will look just like Twitter and Zurb's site. You can also just take out the CSS for specific parts of your design (e.g. if you want a responsive grid, use the code in the frameworks)
+* emmet
+* practicaltypographycom
+* reset.css (every browser engine will render your stuff differently), copy into your css and link in the index (purpose of reset is for browser styling)
+* reset.css and skeleton.css is for browser stuff
+* in style.css (make new file), global line-height
+
+
+* map out the specific things in your page
+* "-" not "_" or spaces for div names
+* idea of design is to give form to content, not other way around
+* emmet tricks: lorem(tab) is placeholder text, !(tab) == html:5(tab)
+* .container>header>nav>ul>li*3 (tab) - it will nest everything within
