@@ -164,6 +164,7 @@ DEPENDENCIES
   httparty
   jbuilder (~> 1.2)
   jquery-rails
+  oauth
   pg
   pry-rails
   rails (= 4.0.4)
