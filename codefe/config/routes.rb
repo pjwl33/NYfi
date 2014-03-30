@@ -15,7 +15,7 @@ Codefe::Application.routes.draw do
   post '/addhotspot', to: 'users#add_hotspot'
   post '/removehotspot', to: 'users#remove_hotspot'
 
-  root to: 'users#index'
+  root to: 'hotspots#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

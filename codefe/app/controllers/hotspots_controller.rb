@@ -1,7 +1,7 @@
 class HotspotsController < ApplicationController
 
   def index
-    @hotspots = Hotspot.all
+    @hotspots = Hotspot.all.paginate(page: params[:page], per_page: 35).order(name: :asc)
     @show_link = true
   end
 

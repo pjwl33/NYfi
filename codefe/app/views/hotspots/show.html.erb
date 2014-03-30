@@ -1,4 +1,5 @@
 <h4><%= flash[:notice] %></h4>
-<%= render @hotspot %> <br>
-
+<%= render @hotspot %>
+  <br>
+<%= link_to "EDIT this Hotspot", edit_hotspot_path(@hotspot) %> <br>
 <%= link_to "DELETE this Hotspot", @hotspot, method: 'delete' %>

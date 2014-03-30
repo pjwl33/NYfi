@@ -1,18 +1,13 @@
-<!-- WIFI UL/DL speed is in KBPS -->
-
 <div>
   <% if @show_link %>
-    <h4>Hotspot: <%= link_to hotspot.name, hotspot %></h4>
+    <h4><%= link_to hotspot.name, hotspot %></h4>
   <% else %>
-    <h4>Hotspot: <%= hotspot.name %></h4>
-  <% end %>
-
-  <p><strong>Address: </strong><%= hotspot.address %> <br>
+    <h4><%= hotspot.name %></h4>
+    <img src="<%= hotspot.img_url %>" alt=""><br>
+    <strong>Address: </strong><%= hotspot.address %> <br>
     <strong>Wifi: </strong> <%= hotspot.wifi_type %> <br>
-    <strong>Business Site: </strong><a href="<%= hotspot.biz_url %>">LINK</a><br>
-    <strong>Phone (Not all Available): </strong> <%= hotspot.phone %> <br>
-  </p>
-
-  <p><%= link_to "EDIT this Hotspot", edit_hotspot_path(hotspot) %></p>
-
+    <a href="<%= hotspot.biz_url %>">Biz Site</a> <br>
+    <strong>Phone (If Available): </strong> <%= hotspot.phone %> <br>
+    <strong>Yelp Rating: </strong> <%= hotspot.yelp_rating %> <br>
+  <% end %>
 </div>

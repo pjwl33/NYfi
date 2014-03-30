@@ -10,19 +10,25 @@
   <% end %>
 
   <%= f.label :name %>
-  <%= f.text_field :name %> <br>
+  <%= f.text_field :name %>
 
   <%= f.label :address %>
-  <%= f.text_field :address %> <br>
-
-  <%= f.label :biz_url %>
-  <%= f.text_field :biz_url %> <br>
-
-  <%= f.label :img_url %>
-  <%= f.text_field :img_url %> <br>
+  <%= f.text_field :address %>
 
   <%= f.label :wifi_type %>
-  <%= f.select :wifi_type, ["Free", "Fee-based"] %> <br>
+  <%= f.select :wifi_type, ["Free", "Fee-based"] %>
+
+  <%= f.label :phone %>
+  <%= f.text_field :phone %>
+
+  <%= f.label :yelp_rating %>
+  <%= f.number_field :yelp_rating, value: @hotspot.yelp_search[0] %>
+
+  <%= f.label :biz_url %>
+  <%= f.text_field :biz_url %>
+
+  <%= f.label :img_url %>
+  <%= f.text_field :img_url, value: @hotspot.yelp_search[1] %>
 
   <%= f.submit %>
 

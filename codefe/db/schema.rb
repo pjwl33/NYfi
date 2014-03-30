@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140329184256) do
+ActiveRecord::Schema.define(version: 20140330004510) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140329184256) do
     t.string  "phone"
     t.string  "img_url"
     t.decimal "yelp_rating", precision: 8, scale: 2
+    t.decimal "rating"
   end
 
   create_table "hotspots_users", id: false, force: true do |t|
