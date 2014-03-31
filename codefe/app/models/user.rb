@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_secure_password
-  has_and_belongs_to_many :hotspot
+  has_and_belongs_to_many :hotspots
 
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true

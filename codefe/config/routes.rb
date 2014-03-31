@@ -9,8 +9,8 @@ Codefe::Application.routes.draw do
     collection do
     get 'search'
     end
+    resources :comments, only: [:create, :destroy]
   end
-  resources :comments
 
   post '/addhotspot', to: 'users#add_hotspot'
   post '/removehotspot', to: 'users#remove_hotspot'

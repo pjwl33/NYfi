@@ -1,4 +1,6 @@
 <h4><%= flash[:notice] %></h4>
 <%= render @user %>
 
-<%= link_to "DELETE this User", @user, method: 'delete' %>
+<%= link_to "DELETE this User", @user, confirm: 'Are you sure?', method: 'delete' %>
+
+

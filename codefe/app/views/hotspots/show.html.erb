@@ -1,5 +1,26 @@
 <h4><%= flash[:notice] %></h4>
 <%= render @hotspot %>
+<br>
+<% unless current_user.hotspots.include? @hotspot %>
+  <%= form_tag '/addhotspot', method: 'post' do %>
+    <%= hidden_field_tag :user_id, current_user.id %>
+    <%= hidden_field_tag :hotspot_id, @hotspot.id %>
+    <%= submit_tag "Add to Favorites!" %>
+  <% end %>
+<% end %>
+<br>
+
+<h4>User Comments: </h4>
+<%= render partial: 'comment', collection: @hotspot.comments %>
+
+<%= form_tag "/hotspots/#{@hotspot.id}/comments", method: 'post' do %>
+  <%= hidden_field_tag :hotspot_id, @hotspot.id %>
+  <%= text_area_tag :content %>
   <br>
+  <%= submit_tag "Add Comment" %>
+<% end %>
+
+<br>
+
 <%= link_to "EDIT this Hotspot", edit_hotspot_path(@hotspot) %> <br>
-<%= link_to "DELETE this Hotspot", @hotspot, method: 'delete' %>
+<%= link_to "DELETE this Hotspot", @hotspot, confirm: 'Are you sure?',method: 'delete' %>

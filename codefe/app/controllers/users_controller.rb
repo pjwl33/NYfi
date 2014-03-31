@@ -52,6 +52,22 @@ class UsersController < ApplicationController
     redirect_to users_path
   end
 
+  def add_hotspot
+    user = User.find params[:user_id]
+    hotspot = Hotspot.find params[:hotspot_id]
+    user.hotspots << hotspot
+    flash[:notice] = "Hotspot Added to #{user.name}'s Favorites!"
+    redirect_to hotspot_path(hotspot)
+  end
+
+  def remove_hotspot
+    user = User.find params[:user_id]
+    hotspot = Hotspot.find params[:hotspot_id]
+    user.hotspots.find(hotspot.id).destroy
+    flash[:notice] = "Hotspot Removed!"
+    redirect_to user_path(user)
+  end
+
   private
   def user_params
     params.require(:user).permit :name, :email, :password, :password_confirmation, :admin
