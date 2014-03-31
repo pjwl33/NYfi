@@ -45,6 +45,24 @@ class HotspotsController < ApplicationController
     end
   end
 
+  def searchform
+  end
+
+  def search
+    if params[:name_query]
+      @hotspots = Hotspot.all conditions: ['name LIKE ?', params[:name_query].capitalize]
+    elsif params[:location_query]
+      @hotspots = Hotspot.all conditions: ['address LIKE ?', params[:location_query]]
+    elsif params[:rating_query]
+      @hotspots = Hotspot.all conditions: {yelp_rating: params[:rating_query]}
+    elsif params[:wifi_query]
+      @hotspots = Hotspot.all conditions: {wifi_type: params[:wifi_query]}
+    else
+      flash[:notice] = "My bad - couldn't find that Hotspot!"
+      redirect_to hotspots_path
+    end
+  end
+
   private
   def hotspot_params
     params.require(:hotspot).permit :name, :address, :cross_street, :hood, :biz_url, :img_url, :type, :power, :status, :dl_speed, :ul_speed, :yelp_rating, :noise_level, :good_for_kids

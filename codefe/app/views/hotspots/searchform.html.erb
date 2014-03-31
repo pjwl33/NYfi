@@ -1,0 +1,23 @@
+<%= form_tag search_hotspots_path, method: 'get' do %>
+  <%= label_tag :name_query, "Search Hotspot by Name" %>
+  <%= text_field_tag :name_query %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<%= form_tag search_hotspots_path, method: 'get' do %>
+  <%= label_tag :location_query, "by Location" %>
+  <%= text_field_tag :location_query %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<%= form_tag search_hotspots_path, method: 'get' do %>
+  <%= label_tag :rating_query, "by Yelp Rating" %>
+  <%= text_field_tag :rating_query %>
+  <%= submit_tag "Search" %>
+<% end %>
+
+<%= form_tag search_hotspots_path, method: 'get' do %>
+  <%= label_tag :wifi_query, "by Wifi-Type" %>
+  <%= select_tag :wifi_query, options: ["Free", "Fee-based"] %>
+  <%= submit_tag "Search" %>
+<% end %>

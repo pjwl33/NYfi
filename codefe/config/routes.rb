@@ -7,6 +7,7 @@ Codefe::Application.routes.draw do
   resources :users
   resources :hotspots do
     collection do
+    get 'searchform'
     get 'search'
     end
     resources :comments, only: [:create, :destroy]

@@ -2,7 +2,7 @@
 <%= render @hotspot %>
 <br>
 <% unless current_user.hotspots.include? @hotspot %>
-  <%= form_tag '/addhotspot', method: 'post' do %>
+  <%= form_tag addhotspot_path, method: 'post' do %>
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :hotspot_id, @hotspot.id %>
     <%= submit_tag "Add to Favorites!" %>
