@@ -1,28 +1,30 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>Codefe</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
-  <link rel="stylesheet" href="reset.css">
-  <link rel="stylesheet" href="skeleton.css">
-</head>
-<body>
-<% if current_user %>
-  <%= link_to current_user.name, user_path(current_user) %> -- Welcome to Codefe'
-  <%= link_to "Logout", logout_path %>
-<% else %>
-  <%= link_to "Create New Account", new_user_path %>
-  <%= link_to "Login", login_path %>
-<% end %>
+  <head>
+    <title>Codefe</title>
+    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <header>
+    <% if current_user %>
+      <%= link_to current_user.name, user_path(current_user) %> -- Welcome to Codefe'
+      <%= link_to "Logout", logout_path %>
+    <% else %>
+      <%= link_to "Create New Account", new_user_path %>
+      <%= link_to "Login", login_path %>
+    <% end %>
+  <br>
+    <a href="/"><img src="http://i.imgur.com/qz9R5cO.jpg" alt=""></a>
+  </header>
 
-<a href="/"><img src="http://i.imgur.com/qz9R5cO.jpg" alt=""></a>
-
-<h4><%= link_to "Hotspots", hotspots_path %></h4>
-<br>
-<h4><%= link_to "Search", searchform_hotspots_path %></h4>
-<div class="mainbox"><%= yield %></div>
-
-</body>
+  <body>
+  <h4><%= link_to "Hotspots", hotspots_path %></h4>
+  <br>
+  <h4><%= link_to "Search", searchform_hotspots_path %></h4>
+  <div class="mainbox"><%= yield %></div>
+  </body>
+ <footer>
+    &copy; Paul Jinwoo Lee 2014
+  </footer>
 </html>

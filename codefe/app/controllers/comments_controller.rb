@@ -20,6 +20,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
+    @hotspot = Hotspot.find(params[:hotspot_id])
     params.require(:comment).permit(:content, :created_at, :updated_at, :hotspot_id)
   end
 
