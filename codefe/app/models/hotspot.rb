@@ -23,6 +23,9 @@ class Hotspot < ActiveRecord::Base
       end
       info_array = [rating, img_url]
       return info_array
+    else
+      info_array = [0.0, "Not Available"]
+      return info_array
     end
   end
 

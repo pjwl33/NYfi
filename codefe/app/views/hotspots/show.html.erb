@@ -1,7 +1,7 @@
 <h4><%= flash[:notice] %></h4>
 <%= render @hotspot %>
 <br>
-<% unless current_user.hotspots.include? @hotspot %>
+<% if current_user && !current_user.hotspots.include? @hotspot %>
   <%= form_tag addhotspot_path, method: 'post' do %>
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :hotspot_id, @hotspot.id %>
@@ -22,5 +22,7 @@
 
 <br>
 
-<%= link_to "EDIT this Hotspot", edit_hotspot_path(@hotspot) %> <br>
-<%= link_to "DELETE this Hotspot", @hotspot, confirm: 'Are you sure?', method: 'delete' %>
+<% if  admin? %>
+  <%= link_to "EDIT this Hotspot", edit_hotspot_path(@hotspot) %> <br>
+  <%= link_to "DELETE this Hotspot", @hotspot, confirm: 'Are you sure?', method: 'delete' %>
+<% end %>

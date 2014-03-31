@@ -4,6 +4,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   helper_method :current_user
+  helper_method :admin?
 
   def current_user
     if session[:user_id]
@@ -18,6 +19,16 @@ class ApplicationController < ActionController::Base
       flash[:notice] = "New User?"
       redirect_to login_path
     end
+  end
+
+  def authorization
+    unless admin?
+      redirect_to root_path
+    end
+  end
+
+  def admin?
+    return current_user && current_user.admin
   end
 
 end

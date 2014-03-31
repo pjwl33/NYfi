@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate
+  before_action :authorization, only: [:edit, :destroy]
 
   def index
     @users = User.all
@@ -48,8 +49,13 @@ class UsersController < ApplicationController
 
   def destroy
     @user = User.find params[:id]
-    @user.destroy
-    redirect_to users_path
+    if current_user == @user || admin?
+      @user.destroy
+      redirect_to users_path
+    else
+      flash[:notice] = "This Ain't Yo' Account"
+      redirect_to users_path
+    end
   end
 
   def add_hotspot

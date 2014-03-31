@@ -21,12 +21,17 @@ class HotspotsController < ApplicationController
   end
 
   def edit
-    @hotspot = Hotspot.find params[:id]
+    if admin?
+      @hotspot = Hotspot.find params[:id]
+    else
+      flash[:notice] = "You need to be an admin to do that!"
+      redirect_to root_path
+    end
   end
 
   def update
     @hotspot = Hotspot.find params[:id]
-    if current_user.admin?
+    if admin?
       @hotspot.update hotspot_params
       redirect_to @hotspot
     else
@@ -37,7 +42,7 @@ class HotspotsController < ApplicationController
 
   def destroy
     @hotspot = Hotspot.find params[:id]
-    if current_user.admin?
+    if admin?
       @hotspot.destroy
       redirect_to hotspots_path
     else
@@ -51,7 +56,7 @@ class HotspotsController < ApplicationController
 
   def search
     if params[:name_query]
-      @hotspots = Hotspot.all conditions: ['name LIKE ?', params[:name_query].capitalize]
+      @hotspots = Hotspot.all conditions: ['name LIKE ?', "#{params[:name_query].capitalize}%"]
     elsif params[:location_query]
       @hotspots = Hotspot.all conditions: [address: params[:location_query]]
     elsif params[:rating_query]
@@ -61,6 +66,19 @@ class HotspotsController < ApplicationController
     else
       flash[:notice] = "My bad - couldn't find that Hotspot!"
       redirect_to hotspots_path
+    end
+  end
+
+  def yelpsync
+    if admin?
+      Hotspot.all.each do |hs|
+        if hs.yelp_rating == nil && hs.img_url == nil
+          hs.update({
+          yelp_rating: hs.yelp_search[0],
+          img_url: hs.yelp_search[1]
+          })
+        end
+      end
     end
   end
 

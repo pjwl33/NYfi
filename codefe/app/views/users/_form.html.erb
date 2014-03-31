@@ -21,7 +21,7 @@
   <%= f.label :password_confirmation %>
   <%= f.password_field :password_confirmation %>
 
-  <% if current_user != nil && current_user.admin? %>
+  <% if admin? %>
     <%= f.label :admin %>
     <%= f.check_box :admin %>
   <% end %>
