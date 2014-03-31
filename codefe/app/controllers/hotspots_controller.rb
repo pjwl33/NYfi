@@ -9,6 +9,7 @@ class HotspotsController < ApplicationController
 
   def show
     @hotspot = Hotspot.find params[:id]
+    @comment = Comment.new
   end
 
   def new
@@ -58,7 +59,7 @@ class HotspotsController < ApplicationController
     if params[:name_query]
       @hotspots = Hotspot.all conditions: ['name LIKE ?', "#{params[:name_query].capitalize}%"]
     elsif params[:location_query]
-      @hotspots = Hotspot.all conditions: [address: params[:location_query]]
+      @hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{params[:location_query]}%"]
     elsif params[:rating_query]
       @hotspots = Hotspot.all conditions: {yelp_rating: params[:rating_query]}
     elsif params[:wifi_query]

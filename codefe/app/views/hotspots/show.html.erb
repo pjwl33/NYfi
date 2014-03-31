@@ -1,7 +1,7 @@
 <h4><%= flash[:notice] %></h4>
 <%= render @hotspot %>
 <br>
-<% if current_user && !current_user.hotspots.include? @hotspot %>
+<% unless current_user.hotspots.include? @hotspot %>
   <%= form_tag addhotspot_path, method: 'post' do %>
     <%= hidden_field_tag :user_id, current_user.id %>
     <%= hidden_field_tag :hotspot_id, @hotspot.id %>
@@ -13,11 +13,10 @@
 <h4>User Comments: </h4>
 <%= render partial: 'comment', collection: @hotspot.comments %>
 
-<%= form_tag "/hotspots/#{@hotspot.id}/comments", method: 'post' do %>
-  <%= hidden_field_tag :hotspot_id, @hotspot.id %>
-  <%= text_area_tag :content %>
+<%= form_for @comment, url: {action: "create"} do |f| %>
+  <%= f.text_area :content %>
   <br>
-  <%= submit_tag "Add Comment" %>
+  <%= f.submit "Add Comment" %>
 <% end %>
 
 <br>

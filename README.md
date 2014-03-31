@@ -6,7 +6,7 @@ GA_WDI_Project1_Codefe
 #####Pivotal Tracker [Link](https://www.pivotaltracker.com/s/projects/1046968)
 
 #####ERD
-![ERD](http://i.imgur.com/94pyWqa.jpg)
+![ERD](http://i.imgur.com/F9RnqF0.jpg)
 
 
 

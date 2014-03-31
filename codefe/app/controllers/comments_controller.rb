@@ -1,6 +1,8 @@
 class CommentsController < ApplicationController
 
   def create
+    # render text: params.inspect
+    # @hotspot = Hotspot.find params[:hotspot_id]
     @comment = Comment.new comment_params
     if @comment.save
       flash[:notice] = "Comment Added!"
