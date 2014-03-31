@@ -38,10 +38,8 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find params[:id]
-    if current_user == @user
+    if current_user == @user || admin?
       @user.update user_params
-      redirect_to @user
-    else
       flash[:notice] = "Account Updated!"
       redirect_to @user
     end
@@ -76,7 +74,11 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    params.require(:user).permit :name, :email, :password, :password_confirmation, :admin
+    if admin?
+      params.require(:user).permit :name, :email, :password, :password_confirmation, :admin
+    else
+      params.require(:user).permit :name, :email, :password, :password_confirmation
+    end
   end
 
 end
