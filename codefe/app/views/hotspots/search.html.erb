@@ -3,3 +3,4 @@
 <% @hotspots.each do |hs| %>
   <%= link_to hs.name, hs  %>, <%= hs.address %> <br>
 <% end %>
+<%= will_paginate @hotspots %>

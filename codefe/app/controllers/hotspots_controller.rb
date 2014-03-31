@@ -61,6 +61,7 @@ class HotspotsController < ApplicationController
       flash[:notice] = "My bad - couldn't find that Hotspot!"
       redirect_to hotspots_path
     end
+    @hotspots.paginate(page: params[:page], per_page: 15).order(name: :asc)
   end
 
   private
