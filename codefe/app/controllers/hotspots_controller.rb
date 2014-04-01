@@ -9,7 +9,6 @@ class HotspotsController < ApplicationController
 
   def show
     @hotspot = Hotspot.find params[:id]
-    @comment = Comment.new
   end
 
   def new

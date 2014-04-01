@@ -13,10 +13,12 @@
 <h4>User Comments: </h4>
 <%= render partial: 'comment', collection: @hotspot.comments %>
 
-<%= form_for @comment, url: {action: "create"} do |f| %>
+<br>
+
+<%= form_for [@hotspot, @hotspot.comments.new] do |f| %>
   <%= f.text_area :content %>
   <br>
-  <%= f.submit "Add Comment" %>
+  <%= submit_tag "Add Comment" %>
 <% end %>
 
 <br>
