@@ -9,7 +9,7 @@ class Hotspot < ActiveRecord::Base
 
   #Google Static Map API key and point
   def map_key
-    return "http://maps.googleapis.com/maps/api/staticmap?center=#{self.address.split.join("+")}&zoom=15&size=600x300&markers=size:mid%=color:red%7Clabel:S%7C#{self.address.split.join("+")}&sensor=true_or_false&key=AIzaSyAf-kaHYTcunJRivgwJKLC1WjJl4zXgJIk"
+    return "http://maps.googleapis.com/maps/api/staticmap?center=#{self.address.split.join("+")}&zoom=15&size=600x300&markers=size:mid%=color:red%7Clabel:H%7C#{self.address.split.join("+")}&sensor=true_or_false&key=AIzaSyAf-kaHYTcunJRivgwJKLC1WjJl4zXgJIk"
   end
 
   #Yelp API for specific business by address and name
@@ -25,12 +25,12 @@ class Hotspot < ActiveRecord::Base
     if response && response["businesses"]
       if response["businesses"].first
         rating = response["businesses"].first["rating"] || 0.0
-        img_url = response["businesses"].first["image_url"] || "Not Available"
+        img_url = response["businesses"].first["image_url"] || "http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png"
       end
       info_array = [rating, img_url]
       return info_array
     else
-      info_array = [0.0, "Not Available"]
+      info_array = [0.0, "http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png"]
       return info_array
     end
   end

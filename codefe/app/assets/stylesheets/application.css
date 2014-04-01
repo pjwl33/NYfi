@@ -2,13 +2,14 @@ header {
   margin-top: 40px;
   margin-bottom: 20px;
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: 1px;
   text-align: center;
 }
 
 h1 {
   font-size: 36px;
-  font-weight: 900;
-  letter-spacing: -2px;
+  font-weight: bold;
+  letter-spacing: 2px;
   color: #FF6699;
 }
 
@@ -75,8 +76,9 @@ color: #FF6699;
 }
 
 nav {
-  margin-top: -30px;
+  margin-top: -20px;
   color: rgb(36, 36 ,36);
+  margin-right: 15px;
 }
 
 nav ul {
@@ -91,28 +93,27 @@ nav ul li {
   margin-left: 10px;
   text-align: center;
   line-height: 40px;
-  font-weight: bold;
   color: #99FFFF;
-  transition: .5s all;
-}
-
-nav ul li:hover {
-  background-color: #FF6699;
-  cursor: pointer;
 }
 
 .link {
-  display: inline;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 10px;
   letter-spacing: 1px;
-  margin-left: 5px;
-  padding: 5px;
+  margin: auto;
   text-align: center;
   line-height: 40px;
   font-weight: bold;
   color: orange;
-  transition: .5s all;
+  transition: .8s all;
+}
+
+.delete {
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 10px;
+  letter-spacing: 1px;
+  font-weight: bold;
 }
 
 .widget {
@@ -132,6 +133,7 @@ a:visited {
 
 a:hover {
   color: #99FFFF;
+  transition: .5s all;
 }
 
 .text {
@@ -145,8 +147,7 @@ a:hover {
 }
 
 .comment {
-  float: right;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  display: inline;
   margin-right: 250px;
 }
 
@@ -161,17 +162,21 @@ a:hover {
 iframe {
   width: 650px;
   height: 550px;
-  border:10px solid #FF6699;
+  border: 5px solid #FF6699;
   margin-left: 100px;
   margin-right: 50px;
 }
 
 footer {
-  margin-top: 150px;
+  margin-top: 60px;
   margin-left: -5px;
   position: absolute;
   border-bottom: 10px solid #FF6699;
   width: 100%;
+  text-transform: uppercase;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
 }
 
 .button {

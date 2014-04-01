@@ -75,7 +75,7 @@ class HotspotsController < ApplicationController
   def yelpsync
     if admin?
       Hotspot.all.each do |hs|
-        if true
+        if hs.yelp_rating == nil && hs.img_url == nil
           hs.update({
           yelp_rating: hs.yelp_search[0],
           img_url: hs.yelp_search[1]
