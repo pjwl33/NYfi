@@ -1,16 +1,13 @@
-<h4><%= flash[:notice] %></h4>
-<%= render @user %>
+<div class="flash"><%= flash[:notice] %></div>
+<div class="post"><%= render @user %></div>
 
-<br>
+ <div class="widget">
+  <div class="link"><%= link_to "EDIT this Account", edit_user_path(@user) %></div>
+  <div class="link"><%= link_to "DELETE this User", @user, confirm: 'Are you sure?', method: 'delete' %></div>
+</div>
 
-<%= link_to "EDIT this Account", edit_user_path(@user) %>
-
-<br>
-
-<%= link_to "DELETE this User", @user, confirm: 'Are you sure?', method: 'delete' %> <br>
-<br>
-<% if admin? %>
-  <%= link_to "Sync Database with Yelp", yelpsync_hotspots_path %>
-<% end %>
-
-
+<div class="link">
+  <% if admin? %>
+    <%= link_to "Sync Database with Yelp", yelpsync_hotspots_path %>
+  <% end %>
+</div>

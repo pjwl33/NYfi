@@ -55,6 +55,7 @@ class UsersController < ApplicationController
     end
   end
 
+  #adding a favorite hotspot to user hotspots list
   def add_hotspot
     user = User.find params[:user_id]
     hotspot = Hotspot.find params[:hotspot_id]
@@ -63,6 +64,7 @@ class UsersController < ApplicationController
     redirect_to hotspot_path(hotspot)
   end
 
+  #removing a favorite hotspot from user hotspots list
   def remove_hotspot
     user = User.find params[:user_id]
     hotspot = Hotspot.find params[:hotspot_id]

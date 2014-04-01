@@ -1,34 +1,41 @@
-<h4><%= flash[:notice] %></h4>
-<%= render @hotspot %>
+<div class="flash"><%= flash[:notice] %></div>
+<div class="post"><%= render @hotspot %></div>
 
 <div class="mini-map">
-  <img src="<%= @hotspot.map_key %>" alt="">
+  <img src="<%= @hotspot.map_key %>">
 </div>
 
-<br>
-<% unless current_user.hotspots.include? @hotspot %>
-  <%= form_tag addhotspot_path, method: 'post' do %>
-    <%= hidden_field_tag :user_id, current_user.id %>
-    <%= hidden_field_tag :hotspot_id, @hotspot.id %>
-    <%= submit_tag "Add to Favorites!" %>
+<div class="sidebar four columns offset-by-two">
+  <% unless current_user.hotspots.include? @hotspot %>
+    <%= form_tag addhotspot_path, method: 'post' do %>
+      <%= hidden_field_tag :user_id, current_user.id %>
+      <%= hidden_field_tag :hotspot_id, @hotspot.id %>
+      <div class="button">
+        <%= submit_tag "Add to Favorites!" %>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
-<br>
+</div>
 
-<h4>User Comments: </h4>
-<%= render partial: 'comment', collection: @hotspot.comments %>
 
-<br>
+<div class="sidebar four columns offset-by-two">
+  <%= render partial: 'comment', collection: @hotspot.comments %>
+</div>
+
 
 <%= form_for [@hotspot, @hotspot.comments.new] do |f| %>
-  <%= f.text_area :content %>
-  <br>
-  <%= submit_tag "Add Comment" %>
+  <div class="field">
+    <%= f.text_area :content, id: "message_area" %>
+  </div>
+  <div class="button">
+    <%= submit_tag "Add Comment" %>
+  </div>
 <% end %>
 
-<br>
 
 <% if  admin? %>
-  <%= link_to "EDIT this Hotspot", edit_hotspot_path(@hotspot) %> <br>
-  <%= link_to "DELETE this Hotspot", @hotspot, confirm: 'Are you sure?', method: 'delete' %>
+  <div class="link">
+    <%= link_to "EDIT this Hotspot", edit_hotspot_path(@hotspot) %>
+    <%= link_to "DELETE this Hotspot", @hotspot, confirm: 'Are you sure?', method: 'delete' %>
+  </div>
 <% end %>

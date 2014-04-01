@@ -9,23 +9,35 @@
     </ul>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
 
-  <%= f.label :email %>
-  <%= f.text_field :email %>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
 
-  <%= f.label :password %>
-  <%= f.password_field :password %>
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
 
-  <%= f.label :password_confirmation %>
-  <%= f.password_field :password_confirmation %>
+  <div class="field">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation %>
+  </div>
 
-  <% if admin? %>
-    <%= f.label :admin %>
-    <%= f.check_box :admin %>
-  <% end %>
+  <div class="field">
+    <% if admin? %>
+      <%= f.label :admin %>
+      <%= f.check_box :admin %>
+    <% end %>
+  </div>
 
-  <%= f.submit %>
+  <div class="button">
+    <%= f.submit %>
+  </div>
 
 <% end %>

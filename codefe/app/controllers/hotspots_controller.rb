@@ -4,7 +4,8 @@ class HotspotsController < ApplicationController
   before_action :authorization, only: [:edit, :destroy]
 
   def index
-    @hotspots = Hotspot.all.paginate(page: params[:page], per_page: 25).order(name: :asc)
+    @hotspots = Hotspot.all.order(name: :asc)
+    #.paginate(page: params[:page], per_page: 42).order(name: :asc)
     @show_link = true
   end
 
@@ -62,16 +63,19 @@ class HotspotsController < ApplicationController
     elsif params[:location_query]
       @hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{params[:location_query].capitalize}%"]
     elsif params[:rating_query]
+      #needs some fixing - coming in as a non-decimal, but .to_d should do the trick, no?
       @hotspots = Hotspot.all conditions: {yelp_rating: params[:rating_query].to_d}
     elsif params[:wifi_query]
       @hotspots = Hotspot.all conditions: {wifi_type: params[:wifi_query]}
     end
   end
 
+
+  #syncing (updating) yelp ratings and img_url
   def yelpsync
     if admin?
       Hotspot.all.each do |hs|
-        if hs.yelp_rating == nil && hs.img_url == nil
+        if true
           hs.update({
           yelp_rating: hs.yelp_search[0],
           img_url: hs.yelp_search[1]
@@ -79,6 +83,7 @@ class HotspotsController < ApplicationController
         end
       end
     end
+    redirect_to user_path(current_user)
   end
 
   private

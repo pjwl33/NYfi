@@ -1,16 +1,19 @@
-<h3>
-  <%= flash[:notice] %>
-  <%= link_to "Create New Account", new_user_path %>
-</h3>
+<h3><%= link_to "Create New Account", new_user_path %></h3>
+<div class="flash"><%= flash[:notice] %></div>
 
 <h3>Login Form</h3>
 
 <%= form_tag sessions_path do %>
-  <%= label_tag :email %>
-  <%= text_field_tag :email %>
+  <div class="field">
+    <%= label_tag :email %>
+    <%= text_field_tag :email %>
+  </div>
+  <div class="field">
+    <%= label_tag :password %>
+    <%= password_field_tag :password %>
+  </div>
+  <div class="button">
+    <%= submit_tag :login %>
+  </div>
 
-  <%= label_tag :password %>
-  <%= password_field_tag :password %>
-
-  <%= submit_tag :login %>
 <% end %>

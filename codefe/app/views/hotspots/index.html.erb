@@ -1,6 +1,3 @@
-<h3>All Dem Hotspotz</h3>
+<div class="flash"><%= flash[:notice] %></div>
 
-<h4><%= flash[:notice] %></h4>
-
-<%= render @hotspots %>
-<%= will_paginate @hotspots %>
+<div class="post"><%= render @hotspots %></div>

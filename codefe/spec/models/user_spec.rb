@@ -2,8 +2,11 @@ require 'spec_helper'
 
 describe User do
   it "has name, an email, password" do
-    user = User.create!(name: "Paul", email: "paul@gmail.com", password: "hello123")
-    expect(user.include?(:name, :address, :yelp_rating)).to be_true
-    expect(user.password.count).to be_greater_than_or_equal(5)
+    user = User.create!(name: "Paul", email: "paul@gmail.com", password: "hello123", password_confirmation: "hello123", admin: true)
+    expect(user.name).to eq("Paul")
+    expect(user.email).to eq("paul@gmail.com")
+    expect(user.admin).to eq(true)
+    expect(user.password).to eq(user.password_confirmation)
+    expect(user.password.length).to be >= 5
   end
 end

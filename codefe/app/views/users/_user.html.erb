@@ -1,22 +1,24 @@
-<div>
-  <% if @show_link %>
-    <h4>User Name: <%= link_to user.name, user %></h4>
-  <% else %>
-    <h4>User Name: <%= user.name %></h4>
-  <% end %>
+<% if @show_link %>
+  <h4>User Name: <%= link_to user.name, user %></h4>
+<% else %>
+  <h4>User Name: <%= user.name %></h4>
+<% end %>
 
-  <p><strong>Email: </strong><%= user.email %>
-    <strong>Admin: </strong> <%= yesno(user.admin) %>
-  </p>
+<div class="info">
+  Email: <%= user.email %> ||
+  Admin: <%= yesno(user.admin) %>
+</div>
 
-  <h3>Favorite Hotspots</h3>
-    <% user.hotspots.each do |hotspot| %>
-      <%= link_to hotspot.name, hotspot_path(hotspot) %>
-      <%= form_tag '/removehotspot', method: 'post' do %>
-        <%= hidden_field_tag :hotspot_id, hotspot.id %>
-        <%= hidden_field_tag :user_id, user.id %>
+<div class="sidebar four columns offset-by-two">
+  <h5>Favorite Hotspots</h5>
+  <% user.hotspots.each do |hotspot| %>
+    <%= link_to hotspot.name, hotspot_path(hotspot) %>
+    <%= form_tag '/removehotspot', method: 'post' do %>
+      <%= hidden_field_tag :hotspot_id, hotspot.id %>
+      <%= hidden_field_tag :user_id, user.id %>
+      <div class="button">
         <%= submit_tag "Remove from Favorites" %>
-      <% end %>
+      </div>
     <% end %>
-
+  <% end %>
 </div>

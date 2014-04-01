@@ -1,21 +1,184 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the top of the
- * compiled file, but it's generally better to create a new file per style scope.
- *
- *= require_self
- *= require_tree .
- */
+header {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-align: center;
+}
+
+h1 {
+  font-size: 36px;
+  font-weight: 900;
+  letter-spacing: -2px;
+  color: #FF6699;
+}
+
+h2 {
+  padding-bottom: 50px;
+  border-bottom: 10px solid #FF6699;
+  font-size: 18px;
+  color: #99FFFF;
+}
+
+h3 {
+  padding-top: 20px;
+}
+
+h4 {
+  padding-top: 20px;
+}
+
+.flash {
+  padding-top: 20px;
+  font-weight: bold;
+  color: #99FFFF;
+}
+
+.search {
+  padding-top: 20px;
+}
+
+.wrapper {
+  width: 770;
+  height: 570px;
+  overflow: scroll;
+  overflow-x: hidden;
+  margin-left: 15px;
+}
+
+::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0)
+}
+
+body {
+line-height: 1.4;
+font-family: Georgia, serif;
+border-top: 10px solid #FF6699;
+background: url("http://caffeine-app.com/dark-wood.jpg");
+color: #FF6699;
+}
+
+.info {
+  display: inline-block;
+  width: auto;
+  padding: 5px;
+  border: 2px solid #FF6699;
+  margin: auto;
+}
+
+.mini-map {
+  margin-top: 20px;
+  margin-left: 20px;
+}
+
+nav {
+  margin-top: -30px;
+  color: rgb(36, 36 ,36);
+}
+
+nav ul {
+  float: right;
+}
+
+nav ul li {
+  display: inline;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-left: 10px;
+  text-align: center;
+  line-height: 40px;
+  font-weight: bold;
+  color: #99FFFF;
+  transition: .5s all;
+}
+
+nav ul li:hover {
+  background-color: #FF6699;
+  cursor: pointer;
+}
+
+.link {
+  display: inline;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  margin-left: 5px;
+  padding: 5px;
+  text-align: center;
+  line-height: 40px;
+  font-weight: bold;
+  color: orange;
+  transition: .5s all;
+}
+
+.widget {
+  width: 600px;
+  margin-left: 20px;
+}
+
+a:link {
+  color: #FF6699;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #FF6699;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #99FFFF;
+}
+
+.text {
+  margin-bottom: 10px;
+}
+
+#message_area {
+  margin-left: 20px;
+  width: 600px;
+  margin-top: 20px;
+}
+
+.comment {
+  float: right;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  margin-right: 250px;
+}
+
 .field_with_errors input {
   border: 2px solid red;
 }
 
+.post {
+  margin-left: 20px;
+}
+
 iframe {
+  width: 650px;
+  height: 550px;
+  border:10px solid #FF6699;
+  margin-left: 100px;
+  margin-right: 50px;
+}
+
+footer {
+  margin-top: 150px;
+  margin-left: -5px;
+  position: absolute;
+  border-bottom: 10px solid #FF6699;
   width: 100%;
-  height: 300px;
+}
+
+.button {
+  margin-left: 20px;
+}
+
+.hotspot {
+  max-height: 75px;
+  max-width: 75px;
 }

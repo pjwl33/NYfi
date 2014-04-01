@@ -1,13 +1,15 @@
-<div>
-  <% if @show_link %>
-    <h4><%= link_to hotspot.name, hotspot %></h4>
-  <% else %>
-    <h4><%= hotspot.name %></h4>
-    <img src="<%= hotspot.img_url %>" alt=""><br>
-    <strong>Address: </strong><%= hotspot.address %> <br>
-    <strong>Wifi: </strong> <%= hotspot.wifi_type %> <br>
-    <a href="<%= hotspot.biz_url %>">Biz Site</a> <br>
-    <strong>Phone (If Available): </strong> <%= hotspot.phone %> <br>
-    <strong>Yelp Rating: </strong> <%= hotspot.yelp_rating %> <br>
+<% if @show_link %>
+  <%= link_to hotspot  do %>
+      <img class="hotspot" src="<%= hotspot.img_url %>" >
   <% end %>
-</div>
+<% else %>
+  <h4><%= hotspot.name %></h4>
+  <div class="info">
+    Address: <%= hotspot.address %> ||
+    Wifi: <%= hotspot.wifi_type %> ||
+    <a href="<%= hotspot.biz_url %>">Biz Site</a> ||
+    Phone (If Available): <%= hotspot.phone %> ||
+    Yelp Rating: <%= hotspot.yelp_rating %> ||
+  </div>
+
+<% end %>

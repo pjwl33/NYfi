@@ -1,6 +1,8 @@
-<h3>Edit Hotspot for <%= @hotspot.name %></h3>
+<h3>Editing: <%= @hotspot.name %></h3>
 
-<%= render "form" %>
+<div class="post"><%= render "form" %></div>
 
-<%= link_to "Show Hotspot", @hotspot %>
+<div class="link">
+  <%= link_to "Back to #{@hotspot.name}", @hotspot %>
+</div>
 

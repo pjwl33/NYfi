@@ -1,6 +1,10 @@
 <div class="comment">
-  <%= comment.content %>
-  <% if  admin? %>
-    <%= button_to "Delete Comment", [@hotspot, comment], method: 'delete' %>
-  <% end %>
+  <ul>
+    <li>"<%= comment.content %>" by <%= current_user.name %> at <%= comment.updated_at.strftime("%I:%M%p on %m/%d/%Y") %></li>
+  </ul>
+  <div class="link">
+    <% if  admin? %>
+      <%= link_to "Delete Comment", [@hotspot, comment], method: 'delete' %>
+    <% end %>
+  </div>
 </div>

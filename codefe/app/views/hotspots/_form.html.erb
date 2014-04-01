@@ -9,27 +9,36 @@
     </ul>
   <% end %>
 
-  <%= f.label :name %>
-  <%= f.text_field :name %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :address %>
+    <%= f.text_field :address %>
+  </div>
+  <div class="field">
+    <%= f.label :wifi_type %>
+    <%= f.select :wifi_type, ["Free", "Fee-based"] %>
+  </div>
+  <div class="field">
+    <%= f.label :phone %>
+    <%= f.text_field :phone %>
+  </div>
+  <div class="field">
+    <%= f.label :yelp_rating %>
+    <%= f.number_field :yelp_rating, value: @hotspot.yelp_search[0] %>
+  </div>
+  <div class="field">
+    <%= f.label :biz_url %>
+    <%= f.text_field :biz_url %>
+  </div>
+  <div class="field">
+    <%= f.label :img_url %>
+    <%= f.text_field :img_url, value: @hotspot.yelp_search[1] %>
+  </div>
+  <div class="button">
+    <%= f.submit %>
+  </div>
 
-  <%= f.label :address %>
-  <%= f.text_field :address %>
-
-  <%= f.label :wifi_type %>
-  <%= f.select :wifi_type, ["Free", "Fee-based"] %>
-
-  <%= f.label :phone %>
-  <%= f.text_field :phone %>
-
-  <%= f.label :yelp_rating %>
-  <%= f.number_field :yelp_rating, value: @hotspot.yelp_search[0] %>
-
-  <%= f.label :biz_url %>
-  <%= f.text_field :biz_url %>
-
-  <%= f.label :img_url %>
-  <%= f.text_field :img_url, value: @hotspot.yelp_search[1] %>
-
-  <%= f.submit %>
-
-<% end %>
+  <% end %>
