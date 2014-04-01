@@ -14,11 +14,13 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @hotspot = Hotspot.find params[:hotspot_id]
-    @comment = Comment.find params[:id]
-    @comment.destroy
-    flash[:notice] = "Comment deleted!"
-    redirect_to hotspot_path(@hotspot)
+    if admin?
+      @hotspot = Hotspot.find params[:hotspot_id]
+      @comment = Comment.find params[:id]
+      @comment.destroy
+      flash[:notice] = "Comment deleted!"
+      redirect_to hotspot_path(@hotspot)
+    end
   end
 
   private

@@ -1,6 +1,12 @@
 <h4><%= flash[:notice] %></h4>
 <%= render @user %>
 
+<br>
+
+<%= link_to "EDIT this Account", edit_user_path(@user) %>
+
+<br>
+
 <%= link_to "DELETE this User", @user, confirm: 'Are you sure?', method: 'delete' %> <br>
 <br>
 <% if admin? %>

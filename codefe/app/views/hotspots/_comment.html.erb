@@ -1,4 +1,6 @@
 <div class="comment">
   <%= comment.content %>
-  <%= button_to "Delete Comment", [@hotspot, comment], method: 'delete' %>
+  <% if  admin? %>
+    <%= button_to "Delete Comment", [@hotspot, comment], method: 'delete' %>
+  <% end %>
 </div>
