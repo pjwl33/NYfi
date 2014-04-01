@@ -40,7 +40,7 @@ class HotspotsController < ApplicationController
       redirect_to @hotspot
     end
   end
-
+  #this will destroy all related comments as well
   def destroy
     @hotspot = Hotspot.find params[:id]
     if admin?
@@ -53,20 +53,18 @@ class HotspotsController < ApplicationController
   end
 
   def searchform
+    #the searchform by different parameters
   end
-
+  #search by different parameters
   def search
     if params[:name_query]
-      @hotspots = Hotspot.all conditions: ['name LIKE ?', "#{params[:name_query].capitalize}%"]
+      @hotspots = Hotspot.all conditions: ['name LIKE ?', "%#{params[:name_query].capitalize}%"]
     elsif params[:location_query]
-      @hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{params[:location_query]}%"]
+      @hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{params[:location_query].capitalize}%"]
     elsif params[:rating_query]
-      @hotspots = Hotspot.all conditions: {yelp_rating: params[:rating_query]}
+      @hotspots = Hotspot.all conditions: {yelp_rating: params[:rating_query].to_d}
     elsif params[:wifi_query]
       @hotspots = Hotspot.all conditions: {wifi_type: params[:wifi_query]}
-    else
-      flash[:notice] = "My bad - couldn't find that Hotspot!"
-      redirect_to hotspots_path
     end
   end
 

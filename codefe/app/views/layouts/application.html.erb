@@ -1,32 +1,43 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Codefe</title>
-    <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-    <%= csrf_meta_tags %>
-  </head>
-  <header>
-    <% if current_user %>
-      <%= link_to current_user.name, user_path(current_user) %> -- Welcome to Codefe'
-      <%= link_to "Logout", logout_path %>
-    <% else %>
-      <%= link_to "Create New Account", new_user_path %>
-      <%= link_to "Login", login_path %>
-    <% end %>
-  <br>
-    <a href="/"><img src="http://i.imgur.com/qz9R5cO.jpg" alt=""></a>
-  </header>
-
-  <body>
-  <h4><%= link_to "Hotspots", hotspots_path %></h4>
-  <br>
-  <h4><%= link_to "Search", searchform_hotspots_path %></h4>
-  <div class="mainbox"><%= yield %></div>
-  </body>
-
-  <br>
- <footer>
+<head>
+  <title>Codefe</title>
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div class="container">
+      <header class="sixteen columns">
+        <h1>Codefe'</h1>
+        <h3>I tried combing the words "Cafe'" and "Code". It sounds stupid but not stupid enough that I want to change it.</h3>
+        <nav>
+        <% if current_user %>
+          <ul>
+            <li><%= link_to current_user.name, user_path(current_user) %></li>
+            <li><%= link_to "Logout", logout_path %></li>
+        <% else %>
+            <li><%= link_to "Create New Account", new_user_path %></li>
+            <li><%= link_to "Login", login_path %></li>
+        <% end %>
+            <li><%= link_to "Hotspots", hotspots_path %></li>
+            <li><%= link_to "Search", searchform_hotspots_path %></li>
+            <% if admin? %>
+              <li><%= link_to "Create New Hotspot", new_hotspot_path %></li>
+              <li><%= link_to "All Dem Userz", users_path %></li>
+            <% end %>
+          </ul>
+        </nav>
+      </header>
+      <div class="main-map sixteen columns">
+        <iframe class="map" scrolling="no" frameborder="no" align="right" src="https://www.google.com/fusiontables/embedviz?q=select+col3+from+14lXjOKoR4whn6jkRxZW-gXXEQ7zmXiuAzDOYebaW&amp;viz=MAP&amp;h=false&amp;lat=40.740478029265596&amp;lng=-73.9122724291351&amp;t=1&amp;z=12&amp;l=col3&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
+      </div> <!-- MAIN-MAP END -->
+      <div class="wrapper">
+        <%= yield %>
+      </div> <!-- WRAPPER END -->
+  </div> <!-- CONTAINER END -->
+  <footer>
     &copy; Paul Jinwoo Lee 2014
   </footer>
+</body>
 </html>

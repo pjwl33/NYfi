@@ -1,12 +1,6 @@
 <h3>All Dem Hotspotz</h3>
-<% if  admin? %>
-  <%= link_to "Create New Hotspot", new_hotspot_path %>
-<% end %>
+
 <h4><%= flash[:notice] %></h4>
-<br>
 
-<iframe class="map" width="700" height="700" scrolling="no" frameborder="no" align="right" src="https://www.google.com/fusiontables/embedviz?q=select+col3+from+14lXjOKoR4whn6jkRxZW-gXXEQ7zmXiuAzDOYebaW&amp;viz=MAP&amp;h=false&amp;lat=40.740478029265596&amp;lng=-73.9122724291351&amp;t=1&amp;z=12&amp;l=col3&amp;y=2&amp;tmplt=2&amp;hml=ONE_COL_LAT_LNG"></iframe>
-
-<%= will_paginate @hotspots %>
 <%= render @hotspots %>
 <%= will_paginate @hotspots %>

@@ -6,6 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_user
   helper_method :admin?
 
+  #checks to see if user object matches current user
   def current_user
     if session[:user_id]
       return User.find session[:user_id]
@@ -13,20 +14,20 @@ class ApplicationController < ActionController::Base
       return nil
     end
   end
-
+  #authenticates user is logged in
   def authenticate
     if current_user == nil
       flash[:notice] = "New User?"
       redirect_to login_path
     end
   end
-
+  #authorizing admin status
   def authorization
     unless admin?
       redirect_to root_path
     end
   end
-
+  #admin status check
   def admin?
     return current_user && current_user.admin
   end

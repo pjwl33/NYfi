@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
-
+  #creating a comment within a nested hotspot
   def create
-    # render text: params.inspect
     @hotspot = Hotspot.find params[:hotspot_id]
     @comment = @hotspot.comments.create comment_params
     if @comment.save
@@ -12,7 +11,7 @@ class CommentsController < ApplicationController
       redirect_to hotspot_path(@hotspot)
     end
   end
-
+  #destroying a comment within hotspot
   def destroy
     if admin?
       @hotspot = Hotspot.find params[:hotspot_id]

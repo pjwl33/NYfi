@@ -4,6 +4,10 @@ class Hotspot < ActiveRecord::Base
 
   validates :name, :address, :wifi_type, :yelp_rating, presence: true
 
+  def map_key
+    return "http://maps.googleapis.com/maps/api/staticmap?center=#{self.address.split.join("+")}&zoom=15&size=600x300&markers=size:mid%=color:red%7Clabel:S%7C#{self.address.split.join("+")}&sensor=true_or_false&key=AIzaSyAf-kaHYTcunJRivgwJKLC1WjJl4zXgJIk"
+  end
+
   def yelp_search
     client = Yelp::Client.new
     request = Yelp::V2::Search::Request::Location.new(

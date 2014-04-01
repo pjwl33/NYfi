@@ -1,5 +1,4 @@
-<h3>Search Results:</h3>
-
+<h3>Displaying <%= @hotspots.count %> Results:</h3>
 <% @hotspots.each do |hs| %>
   <%= link_to hs.name, hs  %>, <%= hs.address %> <br>
 <% end %>

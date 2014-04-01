@@ -6,7 +6,7 @@
   <% end %>
 
   <p><strong>Email: </strong><%= user.email %>
-    <strong>Admin: </strong> <%= user.admin %>
+    <strong>Admin: </strong> <%= yesno(user.admin) %>
   </p>
 
   <h3>Favorite Hotspots</h3>

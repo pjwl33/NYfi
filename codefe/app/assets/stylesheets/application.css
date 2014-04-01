@@ -15,24 +15,7 @@
   border: 2px solid red;
 }
 
-body {
-line-height: 1.4;
-font-family: Georgia, serif;
-border-top: 10px solid rgb(36, 36, 36);
-display: inline;
-}
-
-header {
-  margin-top: 40px;
-  margin-bottom: 20px;
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  text-align: center;
-}
-
 iframe {
-  padding-right: 50px;
-}
-
-img {
-  max-height: 55%;
+  width: 100%;
+  height: 300px;
 }
