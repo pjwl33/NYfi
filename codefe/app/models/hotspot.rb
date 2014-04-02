@@ -37,14 +37,13 @@ class Hotspot < ActiveRecord::Base
   #recommending other users' favorited hotspots, based on hotspot show
   def recommend
     recs = []
-    users = User.all
-    users.each do |user|
+    User.all.each do |user|
       if user.hotspots.include?(self)
         user.hotspots.each do |hs|
           recs << hs
         end#user.hotspots end
-        return recs.uniq
       end#if include? end
+      return recs.uniq
     end#users.each end
   end#method end
 

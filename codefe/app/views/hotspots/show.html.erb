@@ -17,11 +17,9 @@
   <% end %>
 </div>
 
-
 <div class="sidebar four columns offset-by-two">
   <%= render partial: 'comment', collection: @hotspot.comments %>
 </div>
-
 
 <%= form_for [@hotspot, @hotspot.comments.new] do |f| %>
   <div class="field">
@@ -31,7 +29,6 @@
     <%= submit_tag "Add Comment" %>
   </div>
 <% end %>
-
 
 <div class="widget">
   <% if  admin? %>
