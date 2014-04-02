@@ -1,7 +1,5 @@
 class UsersController < ApplicationController
 
-  before_action :authenticate
-
   def index
     @users = User.all
     @show_link = true
@@ -68,9 +66,14 @@ class UsersController < ApplicationController
   def remove_hotspot
     user = User.find params[:user_id]
     hotspot = Hotspot.find params[:hotspot_id]
-    user.hotspots.destroy(hotspot.id)
-    flash[:notice] = "Hotspot Removed!"
-    redirect_to user_path(user)
+    if current_user.id == user.id
+      user.hotspots.destroy(hotspot.id)
+      flash[:notice] = "Hotspot Removed!"
+      redirect_to user_path(user)
+    else
+      flash[:notice] = "That's not your account!"
+      redirect_to user_path(user)
+    end
   end
 
   private

@@ -12,15 +12,16 @@
         <h1><%= link_to "Codefe'", root_path %></h1>
         <h2>I thought that combing the words "Cafe'" and "Code" would be cool. Turns out - it sounds stupid but not stupid enough to change it.</h2>
         <nav>
-        <% if current_user %>
           <ul>
-            <li><%= link_to "Manage Account:", user_path(current_user) %> <%= current_user.name %></li>
-            <li><%= link_to "Logout", logout_path %></li>
-        <% else %>
-            <li><%= link_to "Create New Account", new_user_path %></li>
-            <li><%= link_to "Login", login_path %></li>
-        <% end %>
-            <li><%= link_to "Search", searchform_hotspots_path %></li>
+            <% if current_user %>
+              <li><%= link_to "Home", root_path %></li>
+              <li><%= link_to "Account", user_path(current_user) %></li>
+              <li><%= link_to "Logout", logout_path %></li>
+            <% else %>
+              <li><%= link_to "Create New Account", new_user_path %></li>
+              <li><%= link_to "Login", login_path %></li>
+            <% end %>
+              <li><%= link_to "Search", searchform_hotspots_path %></li>
             <% if admin? %>
               <li><%= link_to "Create New Hotspot", new_hotspot_path %></li>
               <li><%= link_to "All Dem Userz", users_path %></li>

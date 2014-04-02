@@ -5,5 +5,5 @@ class User < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true
   validates :name, presence: true
   validates :password, length: { minimum: 5 }
-  validates :admin, inclusion: { in: [true, false] }
+  # validates :admin, inclusion: { in: [true, false] }
 end

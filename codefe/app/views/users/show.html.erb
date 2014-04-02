@@ -4,10 +4,10 @@
  <div class="widget">
   <div class="link"><%= link_to "EDIT this Account", edit_user_path(@user) %></div>
   <div class="link"><%= link_to "DELETE this User", @user, confirm: 'Are you sure?', method: 'delete' %></div>
+  <div class="link">
+    <% if admin? %>
+      <%= link_to "Sync Database with Yelp", yelpsync_hotspots_path %>
+    <% end %>
+  </div>
 </div>
 
-<div class="link">
-  <% if admin? %>
-    <%= link_to "Sync Database with Yelp", yelpsync_hotspots_path %>
-  <% end %>
-</div>

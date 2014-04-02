@@ -16,9 +16,7 @@
     <%= form_tag '/removehotspot', method: 'post' do %>
       <%= hidden_field_tag :hotspot_id, hotspot.id %>
       <%= hidden_field_tag :user_id, user.id %>
-      <div class="button">
-        <%= submit_tag "Remove from Favorites" %>
-      </div>
+      <%= submit_tag "Remove from Favorites" %>
     <% end %>
   <% end %>
 </div>

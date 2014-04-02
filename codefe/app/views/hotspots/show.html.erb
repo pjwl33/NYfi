@@ -33,9 +33,11 @@
 <% end %>
 
 
-<% if  admin? %>
-  <div class="link">
-    <%= link_to "EDIT this Hotspot", edit_hotspot_path(@hotspot) %> ||
-    <%= link_to "DELETE this Hotspot", @hotspot, confirm: 'Are you sure?', method: 'delete' %>
-  </div>
-<% end %>
+<div class="widget">
+  <% if  admin? %>
+    <div class="link">
+      <%= link_to "EDIT this Hotspot", edit_hotspot_path(@hotspot) %> ||
+      <%= link_to "DELETE this Hotspot", @hotspot, confirm: 'Are you sure?', method: 'delete' %>
+    </div>
+  <% end %>
+</div>
