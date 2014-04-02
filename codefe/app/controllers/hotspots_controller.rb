@@ -1,10 +1,9 @@
 class HotspotsController < ApplicationController
 
   before_action :authenticate, only: [:show, :new, :create, :edit, :update, :destroy]
-  before_action :authorization, only: [:edit, :destroy]
 
   def index
-    @hotspots = Hotspot.all.order(name: :asc)
+    @hotspots = Hotspot.all.shuffle
     #.paginate(page: params[:page], per_page: 42).order(name: :asc)
     @show_link = true
   end

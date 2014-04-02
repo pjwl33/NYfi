@@ -7,8 +7,10 @@ class SessionsController < ApplicationController
     @user = User.find_by(email: params[:email])
     if @user.authenticate params[:password]
       session[:user_id] = @user.id
+      flash[:notice] = "Welcome back #{@user.name}!"
       redirect_to @user
     else
+      flash[:notice] = "Forgot your password?"
       render 'new'
     end
   end

@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find params[:id]
-    if current_user == @user
+    if current_user == @user || admin?
       render 'edit'
     else
       flash[:notice] = "You do not have access to that account!"

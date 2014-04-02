@@ -17,7 +17,7 @@ h2 {
   padding-bottom: 50px;
   border-bottom: 10px solid #FF6699;
   font-size: 18px;
-  color: #99FFFF;
+  color: #FF6699;
 }
 
 h3 {
@@ -173,7 +173,7 @@ iframe {
 }
 
 footer {
-  margin-top: 60px;
+  margin-top: 80px;
   margin-left: -5px;
   position: absolute;
   border-bottom: 10px solid #FF6699;
@@ -191,4 +191,11 @@ footer {
 .hotspot {
   max-height: 75px;
   max-width: 75px;
+}
+
+.banner {
+  max-height: 75px;
+  max-width: 75px;
+  border-radius: 5px;
+  margin-right: 20px;
 }

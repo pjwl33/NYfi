@@ -9,8 +9,8 @@
 <body>
   <div class="container">
       <header class="sixteen columns">
-        <h1><%= link_to "Codefe'", root_path %></h1>
-        <h2>I thought that combing the words "Cafe'" and "Code" would be cool. Turns out - it sounds stupid but not stupid enough to change it.</h2>
+        <h1><img class="banner" src="http://www.fasthorseinc.com/wp-content/uploads/2013/09/Coffee-and-Computer-796269.gif"><%= link_to "Codefe'", root_path %></h1>
+        <h2>I thought that combining the words "Cafe'" and "Code" would be cool. Turns out - it sounds stupid but not stupid enough to change it.</h2>
         <nav>
           <ul>
             <% if current_user %>
@@ -22,9 +22,9 @@
               <li><%= link_to "Login", login_path %></li>
             <% end %>
               <li><%= link_to "Search", searchform_hotspots_path %></li>
+              <li><%= link_to "All Dem Userz", users_path %></li>
             <% if admin? %>
               <li><%= link_to "Create New Hotspot", new_hotspot_path %></li>
-              <li><%= link_to "All Dem Userz", users_path %></li>
             <% end %>
           </ul>
         </nav>
@@ -39,7 +39,7 @@
       </div> <!-- WRAPPER END -->
   </div> <!-- CONTAINER END -->
   <footer>
-    &copy; Paul Jinwoo Lee 2014
+    &copy; <a href="https://www.linkedin.com/in/pauljwlee">Paul Jinwoo Lee</a> 2014
   </footer>
 </body>
 </html>
