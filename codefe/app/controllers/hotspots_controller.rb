@@ -10,6 +10,7 @@ class HotspotsController < ApplicationController
 
   def show
     @hotspot = Hotspot.find params[:id]
+
   end
 
   def new

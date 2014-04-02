@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
   #creating a comment within a nested hotspot
+  before_action :authenticate
+
   def create
     @hotspot = Hotspot.find params[:hotspot_id]
     @comment = @hotspot.comments.create comment_params

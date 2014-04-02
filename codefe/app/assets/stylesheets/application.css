@@ -18,6 +18,7 @@ h2 {
   border-bottom: 10px solid #FF6699;
   font-size: 18px;
   color: #FF6699;
+  letter-spacing: 1px;
 }
 
 h3 {
@@ -29,9 +30,10 @@ h4 {
 }
 
 .flash {
-  padding-top: 20px;
+  padding-top: 15px;
   font-weight: bold;
   color: #99FFFF;
+  text-align: left;
 }
 
 .search {
@@ -108,8 +110,6 @@ nav ul li {
   text-align: left;
   line-height: 40px;
   font-weight: bold;
-  color: orange;
-  transition: .8s all;
 }
 
 .delete {
@@ -137,7 +137,12 @@ a:visited {
 
 a:hover {
   color: #99FFFF;
-  transition: .5s all;
+  transition: .8s all;
+}
+
+img:hover {
+  transition: 1s all;
+  color: rgba(36, 36, 36, 0);
 }
 
 .text {
@@ -185,6 +190,7 @@ footer {
 }
 
 .button {
+  display: inline;
   margin-left: 20px;
 }
 
@@ -198,4 +204,37 @@ footer {
   max-width: 75px;
   border-radius: 5px;
   margin-right: 20px;
+  margin-left: 20px;
+}
+
+.banner-two{
+  -moz-transform: scaleX(-1);
+  -o-transform: scaleX(-1);
+  -webkit-transform: scaleX(-1);
+  transform: scaleX(-1);
+  filter: FlipH;
+  -ms-filter: "FlipH";
+  max-height: 75px;
+  max-width: 75px;
+  border-radius: 5px;
+  margin-right: 20px;
+  margin-left: 20px;
+}
+
+.rec-head {
+  margin-top: 25px;
+  margin-left: 20px;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-align: left;
+  line-height: 40px;
+  font-weight: bold;
+}
+
+.rec {
+  display: inline;
+  font-size: 12px;
+  font-family: Georgia, serif;
 }

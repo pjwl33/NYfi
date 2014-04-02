@@ -41,3 +41,10 @@
     </div>
   <% end %>
 </div>
+
+<div class="rec-head">
+  Users that liked <%= @hotspot.name %>, also liked:
+  <% @hotspot.recommend.each do |rec| %>
+    <div class="rec"><%= link_to rec.name, hotspot_path(rec) %></div> ||
+  <% end %>
+</div>

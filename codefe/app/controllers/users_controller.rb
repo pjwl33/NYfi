@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
 
+  before_action :authenticate
+
   def index
     @users = User.all
     @show_link = true
@@ -78,11 +80,7 @@ class UsersController < ApplicationController
 
   private
   def user_params
-    if admin?
-      params.require(:user).permit :name, :email, :password, :password_confirmation, :admin
-    else
-      params.require(:user).permit :name, :email, :password, :password_confirmation
-    end
+    params.require(:user).permit :name, :email, :password, :password_confirmation, :admin
   end
 
 end

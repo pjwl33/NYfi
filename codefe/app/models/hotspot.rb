@@ -34,5 +34,18 @@ class Hotspot < ActiveRecord::Base
       return info_array
     end
   end
+  #recommending other users' favorited hotspots, based on hotspot show
+  def recommend
+    recs = []
+    users = User.all
+    users.each do |user|
+      if user.hotspots.include?(self)
+        user.hotspots.each do |hs|
+          recs << hs
+        end#user.hotspots end
+        return recs.uniq
+      end#if include? end
+    end#users.each end
+  end#method end
 
 end
