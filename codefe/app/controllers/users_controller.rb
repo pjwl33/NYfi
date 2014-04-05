@@ -59,7 +59,7 @@ class UsersController < ApplicationController
   def add_hotspot
     user = User.find params[:user_id]
     hotspot = Hotspot.find params[:hotspot_id]
-    user.hotspots << hotspot
+    user.add_hotspot(hotspot)
     flash[:notice] = "Hotspot Added to #{user.name}'s Favorites!"
     redirect_to hotspot_path(hotspot)
   end
@@ -68,8 +68,7 @@ class UsersController < ApplicationController
   def remove_hotspot
     user = User.find params[:user_id]
     hotspot = Hotspot.find params[:hotspot_id]
-    if current_user.id == user.id
-      user.hotspots.destroy(hotspot.id)
+    if user.remove_hotspot(hotspot.id)
       flash[:notice] = "Hotspot Removed!"
       redirect_to user_path(user)
     else

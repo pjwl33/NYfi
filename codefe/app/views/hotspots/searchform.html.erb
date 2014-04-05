@@ -15,6 +15,8 @@
     </div>
   <% end %>
 
+  <!-- QUESTION: would i need to use form partials here if they are all a little differently worded/organized for better UI?? -->
+
   <%= form_tag search_hotspots_path, method: 'get' do %>
     <div class="field">
       <%= label_tag :rating_query, "by Yelp Rating" %>
