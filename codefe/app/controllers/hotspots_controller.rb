@@ -7,11 +7,18 @@ class HotspotsController < ApplicationController
     @hotspots = Hotspot.all.shuffle
     #.paginate(page: params[:page], per_page: 42).order(name: :asc)
     @show_link = true
+    respond_to do |format|
+      format.html
+      format.json {render json: @hotspots.to_json}
+    end
   end
 
   def show
     @hotspot = Hotspot.find params[:id]
-
+    respond_to do |format|
+      format.html
+      format.json {render json: @hotspot.to_json}
+    end
   end
 
   def new
