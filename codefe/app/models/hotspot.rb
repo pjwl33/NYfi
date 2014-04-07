@@ -9,41 +9,48 @@ class Hotspot < ActiveRecord::Base
 
   #Google Static Map API key and point
   def map_key
-    return "http://maps.googleapis.com/maps/api/staticmap?center=#{self.address.split.join("+")}&zoom=15&size=550x300&markers=size:mid%=color:red%7Clabel:H%7C#{self.address.split.join("+")}&sensor=true_or_false&key=AIzaSyAf-kaHYTcunJRivgwJKLC1WjJl4zXgJIk"
+    return "http://maps.googleapis.com/maps/api/staticmap?center=#{self.address.split.join("+")}&zoom=15&size=550x300&markers=size:mid%=color:red%7Clabel:H%7C#{self.address.split.join("+")}&sensor=true_or_false&key=#{ENV["GOOGLE_MAPS_API_KEY"]}"
   end
 
   #Yelp API for specific business by address and name
   def yelp_search
-    client = Yelp::Client.new
-    request = Yelp::V2::Search::Request::Location.new(
-      term: "#{self.name}",
-      address: "#{self.address}",
-      city: "New York"
-    )
-    response = client.search(request)
-    # hash return - could DRY up bottom algo?
-    if response && response["businesses"]
-      if response["businesses"].first
-        rating = response["businesses"].first["rating"] || 0.0
-        img_url = response["businesses"].first["image_url"] || "http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png"
-      end
+    begin
+      client = Yelp::Client.new
+      request = Yelp::V2::Search::Request::Location.new(
+        term: "#{self.name}",
+        address: "#{self.address}",
+        city: "New York"
+      )
+      response = client.search(request)
+      rating = response["businesses"].first["rating"]
+      img_url = response["businesses"].first["image_url"]
       info_array = [rating, img_url]
-      return info_array
-    else
+    rescue Exception
       info_array = [0.0, "http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png"]
-      return info_array
     end
+    return info_array
   end
 
-  def yelp_sync
-    if admin?
-      hotspots.each do |hs|
-        if hs.yelp_rating == nil && hs.img_url == nil
-          hs.update({
-          yelp_rating: hs.yelp_search[0],
-          img_url: hs.yelp_search[1]
-          })
-        end
+  def self.search(name, location, rating, wifi)
+    if name
+      hotspots = Hotspot.all conditions: ['name LIKE ?', "%#{params[:name_query].capitalize}%"]
+    elsif location
+      hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{params[:location_query].capitalize}%"]
+    elsif rating
+      hotspots = Hotspot.all conditions: {yelp_rating: params[:rating_query].to_d}
+    elsif wifi
+      hotspots = Hotspot.all conditions: {wifi_type: params[:wifi_query]}
+    end
+    return hotspots
+  end
+
+  def self.yelpsync
+    Hotspot.all.each do |hs|
+      if hs.yelp_rating == nil && hs.img_url == nil
+        hs.update({
+        yelp_rating: hs.yelp_search[0],
+        img_url: hs.yelp_search[1]
+        })
       end
     end
   end

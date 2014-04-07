@@ -1,6 +1,7 @@
 class HotspotsController < ApplicationController
 
   before_action :authenticate, only: [:show, :new, :create, :edit, :update, :destroy]
+  before_action :authorization, only: [:edit, :yelpsync]
 
   def index
     @hotspots = Hotspot.all.shuffle
@@ -33,8 +34,7 @@ class HotspotsController < ApplicationController
 
   def update
     @hotspot = Hotspot.find params[:id]
-    if admin?
-      @hotspot.update hotspot_params
+    if @hotspot.update hotspot_params
       redirect_to @hotspot
     else
       flash[:notice] = "You need to be an admin to do that!"
@@ -57,23 +57,16 @@ class HotspotsController < ApplicationController
     #the searchform by different parameters
   end
   #search by different parameters
+
+  #HOW would I dry this up some more for 4 separte form_tags, since they all have slightly different logic?
   def search
-    if params[:name_query]
-      @hotspots = Hotspot.all conditions: ['name LIKE ?', "%#{params[:name_query].capitalize}%"]
-    elsif params[:location_query]
-      @hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{params[:location_query].capitalize}%"]
-    elsif params[:rating_query]
-      #needs some fixing - coming in as a non-decimal, but .to_d should do the trick, no?
-      @hotspots = Hotspot.all conditions: {yelp_rating: params[:rating_query].to_d}
-    elsif params[:wifi_query]
-      @hotspots = Hotspot.all conditions: {wifi_type: params[:wifi_query]}
-    end
+    @hotspots = Hotspot.search(params[:name_query], params[:location_query], params[:rating_query], params[:wifi_query])
   end
 
 
   #syncing (updating) yelp ratings and img_url
   def yelpsync
-    @hotspots = Hotspot.all.each
+    Hotspot.yelpsync
     redirect_to user_path(current_user)
   end
 

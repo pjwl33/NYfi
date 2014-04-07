@@ -8,11 +8,9 @@ gem 'better_errors'
 
 gem 'bcrypt'
 
-gem 'geocoder'
-
 gem 'yelpster'
 
-gem 'will_paginate'
+gem 'simplecov'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.4'
