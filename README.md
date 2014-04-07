@@ -9,7 +9,7 @@ GA_WDI_Project1_Codefe
 #####Description:
 Codefe' uses the NYC Open Data registered WiFi hotspots data, as well as the Yelp API to let users know about the best hotspots to work in the city.
 
-#####[Heroku Link](http://apricot-custard-5248.herokuapp.com/)
+#####[Heroku Link](http://fathomless-dawn-9348.herokuapp.com/)
 
 ##### Technologies Used:
 * Yelpster GEM (helps with calling from Yelp API)
