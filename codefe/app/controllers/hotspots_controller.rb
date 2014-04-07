@@ -73,16 +73,7 @@ class HotspotsController < ApplicationController
 
   #syncing (updating) yelp ratings and img_url
   def yelpsync
-    if admin?
-      Hotspot.all.each do |hs|
-        if hs.yelp_rating == nil && hs.img_url == nil
-          hs.update({
-          yelp_rating: hs.yelp_search[0],
-          img_url: hs.yelp_search[1]
-          })
-        end
-      end
-    end
+    @hotspots = Hotspot.all.each
     redirect_to user_path(current_user)
   end
 

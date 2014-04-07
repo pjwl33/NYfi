@@ -2,6 +2,8 @@ class CommentsController < ApplicationController
   #creating a comment within a nested hotspot
   before_action :authenticate
 
+  ###is this still too much logic with the Controller even though it's mostly UI??
+
   def create
     @hotspot = Hotspot.find params[:hotspot_id]
     @comment = @hotspot.comments.create comment_params

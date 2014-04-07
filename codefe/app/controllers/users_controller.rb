@@ -57,20 +57,16 @@ class UsersController < ApplicationController
 
   #adding a favorite hotspot to user hotspots list
   def add_hotspot
-    user = User.find params[:user_id]
-    hotspot = Hotspot.find params[:hotspot_id]
-    user.add_hotspot(hotspot)
-    flash[:notice] = "Hotspot Added to #{user.name}'s Favorites!"
-    redirect_to hotspot_path(hotspot)
+    User.add_hotspot(params[:user_id], params[:hotspot_id])
+    flash[:notice] = "Hotspot Added to #{current_user.name}'s Favorites!"
+    redirect_to hotspot_path(params[:hotspot_id])
   end
 
   #removing a favorite hotspot from user hotspots list
   def remove_hotspot
-    user = User.find params[:user_id]
-    hotspot = Hotspot.find params[:hotspot_id]
-    if user.remove_hotspot(hotspot.id)
+    if User.remove_hotspot(params[:user_id], params[:hotspot_id])
       flash[:notice] = "Hotspot Removed!"
-      redirect_to user_path(user)
+      redirect_to user_path(params[:hotspot_id])
     else
       flash[:notice] = "That's not your account!"
       redirect_to user_path(user)

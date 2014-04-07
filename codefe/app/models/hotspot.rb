@@ -34,6 +34,19 @@ class Hotspot < ActiveRecord::Base
       return info_array
     end
   end
+
+  def yelp_sync
+    if admin?
+      hotspots.each do |hs|
+        if hs.yelp_rating == nil && hs.img_url == nil
+          hs.update({
+          yelp_rating: hs.yelp_search[0],
+          img_url: hs.yelp_search[1]
+          })
+        end
+      end
+    end
+  end
   #recommending other users' favorited hotspots, based on hotspot show
   def recommend
     recs = []
