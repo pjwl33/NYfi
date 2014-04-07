@@ -68,6 +68,7 @@ class HotspotsController < ApplicationController
   def yelpsync
     Hotspot.yelpsync
     redirect_to user_path(current_user)
+    flash[:notice] = "Updated with Yelp"
   end
 
   private

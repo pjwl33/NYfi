@@ -66,10 +66,10 @@ class UsersController < ApplicationController
   def remove_hotspot
     if User.remove_hotspot(params[:user_id], params[:hotspot_id])
       flash[:notice] = "Hotspot Removed!"
-      redirect_to user_path(params[:hotspot_id])
+      redirect_to user_path(params[:user_id])
     else
       flash[:notice] = "That's not your account!"
-      redirect_to user_path(user)
+      redirect_to user_path(params[:user_id])
     end
   end
 

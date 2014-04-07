@@ -16,9 +16,7 @@ class User < ActiveRecord::Base
   def self.remove_hotspot(user_id, hotspot_id)
     user = User.find user_id
     hotspot = Hotspot.find hotspot_id
-    if current_user.id == user.id
-      user.hotspots.destroy(hotspot)
-    end
+    user.hotspots.destroy(hotspot)
   end
 
 

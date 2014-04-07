@@ -33,13 +33,13 @@ class Hotspot < ActiveRecord::Base
 
   def self.search(name, location, rating, wifi)
     if name
-      hotspots = Hotspot.all conditions: ['name LIKE ?', "%#{params[:name_query].capitalize}%"]
+      hotspots = Hotspot.all conditions: ['name LIKE ?', "%#{name.capitalize}%"]
     elsif location
-      hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{params[:location_query].capitalize}%"]
+      hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{location.capitalize}%"]
     elsif rating
-      hotspots = Hotspot.all conditions: {yelp_rating: params[:rating_query].to_d}
+      hotspots = Hotspot.all conditions: {yelp_rating: rating.to_d}
     elsif wifi
-      hotspots = Hotspot.all conditions: {wifi_type: params[:wifi_query]}
+      hotspots = Hotspot.all conditions: {wifi_type: wifi}
     end
     return hotspots
   end
