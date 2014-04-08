@@ -46,12 +46,10 @@ class Hotspot < ActiveRecord::Base
 
   def self.yelpsync
     Hotspot.all.each do |hs|
-      if hs.yelp_rating == nil && hs.img_url == nil
-        hs.update({
-        yelp_rating: hs.yelp_search[0],
-        img_url: hs.yelp_search[1]
-        })
-      end
+      hs.update({
+      yelp_rating: hs.yelp_search[0],
+      img_url: hs.yelp_search[1]
+      })
     end
   end
   #recommending other users' favorited hotspots, based on hotspot show
