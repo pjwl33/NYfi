@@ -57,4 +57,4 @@ production:
   database: codefe_production
   pool: 5
   username: pjwl
-  password:
+  password: <%= ENV['GOOGLE_MAPS_API_KEY'] %>
