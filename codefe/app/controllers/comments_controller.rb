@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
     @hotspot = Hotspot.find params[:hotspot_id]
     @comment = @hotspot.comments.create comment_params
     if @comment.save
-      redirect_to hotspot_path(@hotspot), notice: "Comment Added!"
+      redirect_to hotspot_path(@hotspot), notice: "Comment added!"
     else
       redirect_to hotspot_path(@hotspot), notice: "Error Creating Comment"
     end
