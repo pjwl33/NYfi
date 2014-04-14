@@ -6,7 +6,6 @@ describe Hotspot do
   it { should validate_presence_of :name}
   it { should validate_presence_of :address}
   it { should ensure_inclusion_of(:wifi_type).in_array ["Free", "Fee-based"] }
-  it { should validate_presence_of :yelp_rating}
   it { should validate_numericality_of(:yelp_rating).is_greater_than_or_equal_to(0.0)}
   it { should validate_numericality_of(:yelp_rating).is_less_than_or_equal_to(5.0)}
   it { should allow_value(4.5).for :yelp_rating }
