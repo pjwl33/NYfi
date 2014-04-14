@@ -1,7 +1,24 @@
 # This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
+
 require 'rspec/rails'
+require 'capybara/rails'
+require 'capybara/rspec'
+
+def sign_in(email, password)
+  visit(login_path)
+  fill_in("Email", with: email)
+  fill_in("Password", with: password)
+  click_button("login")
+end
+
+def create_hotspot(name, address)
+  visit(new_hotspot_path)
+  fill_in("Name", with:  name)
+  fill_in("Address", with: address)
+  click_button("Create Hotspot")
+end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are

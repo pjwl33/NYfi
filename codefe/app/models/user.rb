@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 5 }
 
   def  self.add_hotspot(user_id, hotspot_id)
+    # instance method because this would be called on an isntance of the User class
     user = User.find user_id
     hotspot = Hotspot.find hotspot_id
     user.hotspots << hotspot

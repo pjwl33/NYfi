@@ -8,11 +8,9 @@ class CommentsController < ApplicationController
     @hotspot = Hotspot.find params[:hotspot_id]
     @comment = @hotspot.comments.create comment_params
     if @comment.save
-      flash[:notice] = "Comment Added!"
-      redirect_to hotspot_path(@hotspot)
+      redirect_to hotspot_path(@hotspot), notice: "Comment Added!"
     else
-      flash[:notice] = "Error Creating Comment"
-      redirect_to hotspot_path(@hotspot)
+      redirect_to hotspot_path(@hotspot), notice: "Error Creating Comment"
     end
   end
   #destroying a comment within hotspot
@@ -21,14 +19,13 @@ class CommentsController < ApplicationController
       @hotspot = Hotspot.find params[:hotspot_id]
       @comment = Comment.find params[:id]
       @comment.destroy
-      flash[:notice] = "Comment deleted!"
-      redirect_to hotspot_path(@hotspot)
+      redirect_to hotspot_path(@hotspot), notice:  "Comment deleted!"
     end
   end
 
   private
   def comment_params
-    params[:comment].permit(:content, :created_at, :updated_at, :hotspot_id)
+    params.require(:comment).permit(:content, :created_at, :updated_at, :hotspot_id)
   end
 
 end

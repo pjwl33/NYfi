@@ -17,8 +17,7 @@ class ApplicationController < ActionController::Base
   #authenticates user is logged in
   def authenticate
     if current_user == nil
-      flash[:notice] = "New User?"
-      redirect_to login_path
+      redirect_to login_path, notice: "New User?"
     end
   end
   #authorizing admin status

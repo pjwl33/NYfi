@@ -1,4 +1,4 @@
-require 'spec_helper'
+  require 'spec_helper'
 
 describe Hotspot do
   subject(:hotspot){Hotspot.create!(name: "Code Cafe", address: "123 GA Street", wifi_type: "Free", yelp_rating: 5.0)}
@@ -22,7 +22,7 @@ describe Hotspot do
     it "returns an array of the hotspot's Yelp rating and Image URL, in that order" do
       hotspot.yelp_search[0].should be >= 0.0
       hotspot.yelp_search[0].should be <= 5.0
-      expect(hotspot.yelp_search[1]).to eq("http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png")
+      expect(hotspot.yelp_search[1]).to eq(nil)
     end
   end
 

@@ -26,8 +26,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new user_params
     if @user.save
-      flash[:notice] = "New Account Created!"
-      redirect_to @user
+      redirect_to @user, notice: "New Account Created!"
     else
       render 'new'
     end
@@ -38,8 +37,7 @@ class UsersController < ApplicationController
     if current_user == @user || admin?
       render 'edit'
     else
-      flash[:notice] = "You do not have access to that account!"
-      redirect_to @user
+      redirect_to @user, notice: "You do not have access to that account!"
     end
   end
 
@@ -47,8 +45,7 @@ class UsersController < ApplicationController
     @user = User.find params[:id]
     if current_user == @user || admin?
       @user.update user_params
-      flash[:notice] = "Account Updated!"
-      redirect_to @user
+      redirect_to @user, notice: "Account Updated!"
     end
   end
 
@@ -58,8 +55,7 @@ class UsersController < ApplicationController
       @user.destroy
       redirect_to users_path
     else
-      flash[:notice] = "This Ain't Yo' Account"
-      redirect_to users_path
+      redirect_to users_path, notice: "This Ain't Yo' Account"
     end
   end
 

@@ -7,6 +7,14 @@ class Hotspot < ActiveRecord::Base
   validates_numericality_of :yelp_rating, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0
   validates_format_of :yelp_rating, with: /\d[.]\d/
 
+  # updates with yelp info after creation
+  after_create { self.yelp_search}
+  # different search parameters
+  scope(:name_search, -> { all conditions: ['name LIKE ?', "%#{name.capitalize}%"] })
+  scope(:location_search, -> { all conditions: ['address LIKE ?', "%#{location.capitalize}%"] })
+  scope(:rating_search, -> { all conditions: {yelp_rating: rating.to_d} })
+  scope(:wifi__type_search, -> { all conditions: {wifi_type: wifi} })
+
   SEARCH_URL = "http://maps.googleapis.com/maps/api/staticmap?center="
   GOOGLE_MAPS_API_KEY = 'AIzaSyAf-kaHYTcunJRivgwJKLC1WjJl4zXgJIk'
 
@@ -36,23 +44,25 @@ class Hotspot < ActiveRecord::Base
 
   def self.search(name, location, rating, wifi)
     if name
-      hotspots = Hotspot.all conditions: ['name LIKE ?', "%#{name.capitalize}%"]
+      hotspots = Hotspot.name_search
     elsif location
-      hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{location.capitalize}%"]
+      hotspots = Hotspot.location_search
     elsif rating
-      hotspots = Hotspot.all conditions: {yelp_rating: rating.to_d}
+      hotspots = Hotspot.rating_search
     elsif wifi
-      hotspots = Hotspot.all conditions: {wifi_type: wifi}
+      hotspots = Hotspot.wifi__type_search
     end
     return hotspots
   end
 
   def self.yelpsync
     Hotspot.all.each do |hs|
-      hs.update({
-      yelp_rating: hs.yelp_search[0],
-      img_url: hs.yelp_search[1]
-      })
+      if hs.yelp_rating == nil && hs.img_url == nil
+        hs.update({
+        yelp_rating: hs.yelp_search[0],
+        img_url: hs.yelp_search[1]
+        })
+      end
     end
   end
   #recommending other users' favorited hotspots, based on hotspot show

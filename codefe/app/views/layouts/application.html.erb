@@ -34,6 +34,11 @@
       </div>
       <div class="wrapper">
         <div class="posts ten columns">
+          <% flash.each do |type, value| %>
+            <div class="flash-<%= type.to_s %>">
+              <%= value %>
+            </div>
+          <% end %>
           <%= yield %>
         </div> <!-- POSTS END -->
       </div> <!-- WRAPPER END -->

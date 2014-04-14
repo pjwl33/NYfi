@@ -34,8 +34,7 @@ class HotspotsController < ApplicationController
     if admin?
       @hotspot = Hotspot.find params[:id]
     else
-      flash[:notice] = "You need to be an admin to do that!"
-      redirect_to root_path
+      redirect_to root_path, notice: "You need to be an admin to do that!"
     end
   end
 
@@ -44,8 +43,7 @@ class HotspotsController < ApplicationController
     if @hotspot.update hotspot_params
       redirect_to @hotspot
     else
-      flash[:notice] = "You need to be an admin to do that!"
-      redirect_to @hotspot
+      redirect_to @hotspot, notice: "You need to be an admin to do that!"
     end
   end
   #this will destroy all related comments as well
@@ -55,8 +53,7 @@ class HotspotsController < ApplicationController
       @hotspot.destroy
       redirect_to hotspots_path
     else
-      flash[:notice] = "You need to be an admin to do that!"
-      redirect_to hotspots_path
+      redirect_to hotspots_path, notice: "You need to be an admin to do that!"
     end
   end
 
