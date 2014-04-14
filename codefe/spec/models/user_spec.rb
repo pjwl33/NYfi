@@ -1,12 +1,15 @@
 require 'spec_helper'
 
 describe User do
-  it "has name, an email, password" do
-    user = User.create!(name: "Paul", email: "paul@gmail.com", password: "hello123", password_confirmation: "hello123", admin: true)
-    expect(user.name).to eq("Paul")
-    expect(user.email).to eq("paul@gmail.com")
-    expect(user.admin).to eq(true)
-    expect(user.password).to eq(user.password_confirmation)
-    expect(user.password.length).to be >= 5
+
+  it { should validate_presence_of :email }
+  it { should validate_presence_of :name }
+  it { should validate_presence_of :password }
+  it { should have_and_belong_to_many :hotspots }
+
+  it do
+    User.create({ name: "Paul Lee", email: "pauly0418@gmail.com", password: "hello", password_confirmation: "hello", admin: true })
+    should validate_uniqueness_of(:email)
   end
+
 end

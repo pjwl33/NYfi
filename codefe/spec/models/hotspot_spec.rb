@@ -3,14 +3,17 @@
 describe Hotspot do
   subject(:hotspot){Hotspot.create!(name: "Code Cafe", address: "123 GA Street", wifi_type: "Free", yelp_rating: 5.0)}
 
-  describe ".new" do
-    it "has name, an address, wifi-type of Free or Fee-based, yelp-rating" do
-      expect(hotspot.name).to eq("Code Cafe")
-      expect(hotspot.address).to eq("123 GA Street")
-      expect(hotspot.yelp_rating).to eq(5.0)
-      expect(hotspot.wifi_type).to eq("Free")
-    end
-  end
+  it { should validate_presence_of :name}
+  it { should validate_presence_of :address}
+  it { should ensure_inclusion_of(:wifi_type).in_array ["Free", "Fee-based"] }
+  it { should validate_presence_of :yelp_rating}
+  it { should validate_numericality_of(:yelp_rating).is_greater_than_or_equal_to(0.0)}
+  it { should validate_numericality_of(:yelp_rating).is_less_than_or_equal_to(5.0)}
+  it { should allow_value(4.5).for :yelp_rating }
+  it { should_not allow_value(10.2).for :yelp_rating}
+  it { should_not allow_value(-10.2).for :yelp_rating}
+  it { should have_many :comments }
+  it { should have_and_belong_to_many :users }
 
   describe "#map_key" do
     it "returns a Google Maps API URL of a static map image" do

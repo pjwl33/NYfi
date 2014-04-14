@@ -50,6 +50,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'shoulda-matchers'
   gem 'capybara'
+  gem 'nyan-cat-formatter'
 end
 
 gem 'rails_12factor', group: :production

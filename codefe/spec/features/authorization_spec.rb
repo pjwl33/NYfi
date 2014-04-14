@@ -11,7 +11,7 @@ feature "a user can sign in" do
 
   scenario "should not sign in a user with invalid  email or password" do
     sign_in("paul@ga.co", "poopface")
-    expect(page).to have_content("New User?")
+    expect(page).to have_content("Forgot your password?")
   end
 
 end

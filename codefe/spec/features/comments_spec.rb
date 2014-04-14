@@ -1,10 +1,10 @@
 require 'spec_helper'
 
-feature "comments can be created on a post's page" do
+feature "comments can be created on a hotspot's page" do
 
-  background { User.create(name: "Paul Lee", email: "pauly@gmail.com", password: "hello", password_confirmation: "hello") }
+  background { User.create(name: "Paul Lee", email: "pauly@gmail.com", password: "hello", password_confirmation: "hello", admin: true) }
 
-  scenario "should allow a signed in user to create a new post" do
+  scenario "should allow a signed in user to comment on a hotspot" do
     sign_in("paul@ga.co", "hello")
     create_hotspot("Starbucks", "123 Everywhere Drive")
     fill_in("comment_content", with: "this is a cool place")

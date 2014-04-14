@@ -9,16 +9,16 @@ class ApplicationController < ActionController::Base
   #checks to see if user object matches current user
   def current_user
     if session[:user_id]
-      return User.find session[:user_id]
-    else
-      return nil
+      begin
+        return User.find session[:user_id]
+      rescue
+        session[:user_id] = nil
+      end
     end
   end
   #authenticates user is logged in
   def authenticate
-    if current_user == nil
-      redirect_to login_path, notice: "New User?"
-    end
+    redirect_to login_path unless current_user
   end
   #authorizing admin status
   def authorization
