@@ -78,4 +78,8 @@ class Hotspot < ActiveRecord::Base
     end#users.each end
   end#method end
 
+  def closest_search(hotspot)
+    #self.locate and then show closests hotspots in radius
+  end
+
 end
