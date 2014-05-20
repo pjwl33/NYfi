@@ -16,11 +16,10 @@ class Hotspot < ActiveRecord::Base
   scope(:wifi__type_search, -> { all conditions: {wifi_type: wifi} })
 
   SEARCH_URL = "http://maps.googleapis.com/maps/api/staticmap?center="
-  GOOGLE_MAPS_API_KEY = 'AIzaSyAf-kaHYTcunJRivgwJKLC1WjJl4zXgJIk'
 
   #Google Static Map API key and point
   def map_key
-    return "#{SEARCH_URL}#{self.address.split.join("+")}&zoom=15&size=550x300&markers=size:mid%=color:red%7Clabel:H%7C#{self.address.split.join("+")}&sensor=true_or_false&key=#{GOOGLE_MAPS_API_KEY}"
+    return "#{SEARCH_URL}#{self.address.split.join("+")}&zoom=15&size=550x300&markers=size:mid%=color:red%7Clabel:H%7C#{self.address.split.join("+")}&sensor=true_or_false&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
   end
 
   #Yelp API for specific business by address and name
