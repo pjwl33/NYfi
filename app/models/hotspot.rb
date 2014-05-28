@@ -3,12 +3,10 @@ class Hotspot < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   validates :name, :address, presence: true
-  validates :wifi_type, inclusion: { in: ["Free", "Fee-based"] }
-  validates_numericality_of :yelp_rating, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0
-  validates_format_of :yelp_rating, with: /\d[.]\d/
+  # validates :wifi_type, inclusion: { in: ["Free", "Fee-based"] }
+  # validates_numericality_of :yelp_rating, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0
+  # validates_format_of :yelp_rating, with: /\d[.]\d/
 
-  # updates with yelp info after creation
-  after_create { self.yelp_search}
   # different search parameters
   scope(:name_search, -> { all conditions: ['name LIKE ?', "%#{name.capitalize}%"] })
   scope(:location_search, -> { all conditions: ['address LIKE ?', "%#{location.capitalize}%"] })
@@ -30,8 +28,9 @@ class Hotspot < ActiveRecord::Base
         term: "#{self.name}",
         address: "#{self.address}",
         city: "New York"
-      )
+        )
       response = client.search(request)
+      # binding.pry
       rating = response["businesses"].first["rating"]
       img_url = response["businesses"].first["image_url"]
       info_array = [rating, img_url]
@@ -56,12 +55,10 @@ class Hotspot < ActiveRecord::Base
 
   def self.yelpsync
     Hotspot.all.each do |hs|
-      if hs.yelp_rating == nil && hs.img_url == nil
-        hs.update({
+      hs.update({
         yelp_rating: hs.yelp_search[0],
         img_url: hs.yelp_search[1]
         })
-      end
     end
   end
   #recommending other users' favorited hotspots, based on hotspot show
