@@ -9,7 +9,6 @@ Codefe::Application.routes.draw do
     collection do
     get 'searchform'
     get 'search'
-    get 'yelpsync'
     end
     resources :comments, only: [:create, :destroy]
   end

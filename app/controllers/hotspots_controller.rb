@@ -71,14 +71,6 @@ class HotspotsController < ApplicationController
     end
   end
 
-
-  #syncing (updating) yelp ratings and img_url
-  def yelpsync
-    Hotspot.yelpsync
-    redirect_to user_path(current_user)
-    flash[:notice] = "Updated with Yelp"
-  end
-
   private
   def hotspot_params
     params.require(:hotspot).permit :name, :address, :yelp_rating, :biz_url, :img_url, :wifi_type, :phone
