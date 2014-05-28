@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140331201327) do
+ActiveRecord::Schema.define(version: 20140426201240) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -36,6 +36,9 @@ ActiveRecord::Schema.define(version: 20140331201327) do
   create_table "hotspots_users", id: false, force: true do |t|
     t.integer "hotspot_id"
     t.integer "user_id"
+  end
+
+  create_table "somethings", force: true do |t|
   end
 
   create_table "users", force: true do |t|
