@@ -3,9 +3,9 @@ class Hotspot < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   validates :name, :address, presence: true
-  # validates :wifi_type, inclusion: { in: ["Free", "Fee-based"] }
-  # validates_numericality_of :yelp_rating, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0
-  # validates_format_of :yelp_rating, with: /\d[.]\d/
+  validates :wifi_type, inclusion: { in: ["Free", "Fee-based"] }
+  validates_numericality_of :yelp_rating, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0
+  validates_format_of :yelp_rating, with: /\d[.]\d/
 
   # different search parameters
   scope(:name_search, -> { all conditions: ['name LIKE ?', "%#{name.capitalize}%"] })
@@ -17,7 +17,7 @@ class Hotspot < ActiveRecord::Base
 
   #Google Static Map API key and point
   def map_key
-    return "#{SEARCH_URL}#{self.address.split.join("+")}&zoom=15&size=550x300&markers=size:mid%=color:red%7Clabel:H%7C#{self.address.split.join("+")}&sensor=true_or_false&key=#{ENV['GOOGLE_MAPS_API_KEY']}"
+    return "#{SEARCH_URL}#{self.address.split.join("+")}&zoom=15&size=550x300&markers=size:mid%=color:red%7Clabel:H%7C#{self.address.split.join("+")}&sensor=true_or_false&key=#{ENV["GOOGLE_MAPS_API_KEY"]}"
   end
 
   #Yelp API for specific business by address and name
@@ -34,7 +34,7 @@ class Hotspot < ActiveRecord::Base
       rating = response["businesses"].first["rating"]
       img_url = response["businesses"].first["image_url"]
       info_array = [rating, img_url]
-    rescue Exception
+    rescue
       info_array = [0.0, "http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png"]
     end
     return info_array
@@ -56,8 +56,8 @@ class Hotspot < ActiveRecord::Base
   def self.yelpsync
     Hotspot.all.each do |hs|
       hs.update({
-        yelp_rating: hs.yelp_search[0],
-        img_url: hs.yelp_search[1]
+        yelp_rating: 0.0,
+        img_url: "http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png"
         })
     end
   end
