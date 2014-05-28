@@ -3,9 +3,9 @@ class Hotspot < ActiveRecord::Base
   has_and_belongs_to_many :users
 
   validates :name, :address, presence: true
-  validates :wifi_type, inclusion: { in: ["Free", "Fee-based"] }
-  validates_numericality_of :yelp_rating, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0
-  validates_format_of :yelp_rating, with: /\d[.]\d/
+  # validates :wifi_type, inclusion: { in: ["Free", "Fee-based"] }
+  # validates_numericality_of :yelp_rating, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0
+  # validates_format_of :yelp_rating, with: /\d[.]\d/
 
   # different search parameters
   scope(:name_search, -> { all conditions: ['name LIKE ?', "%#{name.capitalize}%"] })
