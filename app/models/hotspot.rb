@@ -45,10 +45,16 @@ class Hotspot < ActiveRecord::Base
 
   def self.yelpsync
     Hotspot.all.each do |hs|
-      hs.update({
-        yelp_rating: hs.yelp_search[0],
-        img_url: hs.yelp_search[1]
+      if hs.yelp_rating == nil || hs.yelp_rating == 0.0
+        hs.update({
+          yelp_rating: hs.yelp_search[0],
         })
+      end
+      if hs.img_url == nil || hs.img_url == "http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png"
+        hs.update({
+          img_url: hs.yelp_search[1],
+        })
+      end
     end
   end
   #recommending other users' favorited hotspots, based on hotspot show
