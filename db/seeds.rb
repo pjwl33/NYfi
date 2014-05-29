@@ -13,12 +13,3 @@ seed_data.each do |hotspot|
     phone: hotspot[5]
    })
 end
-
-# Hotspot.all.each do |hs|
-#   hs.update({
-#   yelp_rating: hs.yelp_search[0],
-#   img_url: hs.yelp_search[1]
-#   })
-# end
-
-

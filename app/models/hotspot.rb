@@ -56,10 +56,8 @@ class Hotspot < ActiveRecord::Base
   def self.yelpsync
     Hotspot.all.each do |hs|
       hs.update({
-        # yelp_rating: hs.yelp_search[0],
-        # img_url: hs.yelp_search[1]
-        yelp_rating: 0.0,
-        img_url: "http://upload.wikimedia.org/wikipedia/en/d/d6/Image_coming_soon.png"
+        yelp_rating: hs.yelp_search[0],
+        img_url: hs.yelp_search[1]
         })
     end
   end
