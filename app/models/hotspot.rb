@@ -7,12 +7,6 @@ class Hotspot < ActiveRecord::Base
   # validates_numericality_of :yelp_rating, greater_than_or_equal_to: 0.0, less_than_or_equal_to: 5.0
   # validates_format_of :yelp_rating, with: /\d[.]\d/
 
-  # different search parameters
-  scope(:name_search, -> { all conditions: ['name LIKE ?', "%#{name.capitalize}%"] })
-  scope(:location_search, -> { all conditions: ['address LIKE ?', "%#{location.capitalize}%"] })
-  scope(:rating_search, -> { all conditions: {yelp_rating: rating.to_d} })
-  scope(:wifi__type_search, -> { all conditions: {wifi_type: wifi} })
-
   SEARCH_URL = "http://maps.googleapis.com/maps/api/staticmap?center="
 
   #Google Static Map API key and point
@@ -42,13 +36,13 @@ class Hotspot < ActiveRecord::Base
 
   def self.search(name, location, rating, wifi)
     if name
-      hotspots = Hotspot.name_search
+      hotspots = Hotspot.all conditions: ['name LIKE ?', "%#{name.capitalize}%"]
     elsif location
-      hotspots = Hotspot.location_search
+      hotspots = Hotspot.all conditions: ['address LIKE ?', "%#{location.capitalize}%"]
     elsif rating
-      hotspots = Hotspot.rating_search
+      hotspots = Hotspot.all conditions: {yelp_rating: rating.to_d}
     elsif wifi
-      hotspots = Hotspot.wifi__type_search
+      hotspots = Hotspot.all conditions: {wifi_type: wifi}
     end
     return hotspots
   end
