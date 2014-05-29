@@ -60,9 +60,7 @@ class HotspotsController < ApplicationController
   def searchform
     #the searchform by different parameters
   end
-  #search by different parameters
 
-  #HOW would I dry this up some more for 4 separte form_tags, since they all have slightly different logic?
   def search
     @hotspots = Hotspot.search(params[:name_query], params[:location_query], params[:rating_query], params[:wifi_query])
   end
