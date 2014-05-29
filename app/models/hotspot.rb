@@ -21,7 +21,6 @@ class Hotspot < ActiveRecord::Base
         city: "New York"
         )
       response = client.search(request)
-      # binding.pry
       rating = response["businesses"].first["rating"]
       img_url = response["businesses"].first["image_url"]
       info_array = [rating, img_url]
